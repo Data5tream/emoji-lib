@@ -62,6 +62,7 @@ public class MainActivity extends FragmentActivity implements EmojiconGridFragme
         getSupportFragmentManager()
                 .beginTransaction()
                 .replace(R.id.emojicons, EmojiconsFragment.newInstance(useSystemDefault))
+//                 .replace(R.id.emojicons, EmojiconsFragment.newInstance(useSystemDefault, Color.parseColor("#00b640"), Color.parseColor("#00782a")))
                 .commit();
     }
 

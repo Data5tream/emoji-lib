@@ -17,4 +17,19 @@
 <resources>
   <color name="horizontal_divider">#8f8f8f</color>
   <color name="horizontal_vertical">#8f8f8f</color>
+
+  <color name="emojicons_google_keyboard_background">#eceff1</color>
+
+  <!-- A character color -->
+  <color name="emojicons_google_keyboard_item_primary">#37474f</color>
+
+  <!-- The shift button color -->
+  <color name="emojicons_google_keyboard_item_secondary">#7f8b8f</color>
+
+  <!-- The spacebar color -->
+  <color name="emojicons_google_keyboard_item_tertiary">#d1d6d9</color>
+
+  <!-- An accent color to mark the selected tab -->
+  <color name="emojicons_selected_tab">#1976D2</color>
+
 </resources>

@@ -29,6 +29,7 @@ import android.support.v4.view.ViewPager;
 import android.view.*;
 import android.widget.EditText;
 import com.rockerhieu.emojicon.emoji.*;
+import android.widget.ImageButton;
 
 import java.util.Arrays;
 import java.util.List;
@@ -45,6 +46,11 @@ public class EmojiconsFragment extends Fragment implements ViewPager.OnPageChang
     private boolean mUseSystemDefault = false;
 
     private static final String USE_SYSTEM_DEFAULT_KEY = "useSystemDefaults";
+    private static final String TAB_ICON_COLOR = "tabIconColor";
+    private static final String TAB_ICON_COLOR_SELECTED = "tabIconColorSelected";
+
+    private int unselectedTabIconColor;
+    private int selectedTabIconColor;
 
     public static EmojiconsFragment newInstance(boolean useSystemDefault) {
         EmojiconsFragment fragment = new EmojiconsFragment();
@@ -54,9 +60,23 @@ public class EmojiconsFragment extends Fragment implements ViewPager.OnPageChang
         return fragment;
     }
 
+    public static EmojiconsFragment newInstance(boolean useSystemDefault, int tabIconColor, int tabIconColorSelected) {
+        EmojiconsFragment fragment = new EmojiconsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putBoolean(USE_SYSTEM_DEFAULT_KEY, useSystemDefault);
+        bundle.putInt(TAB_ICON_COLOR, tabIconColor);
+        bundle.putInt(TAB_ICON_COLOR_SELECTED, tabIconColorSelected);
+        fragment.setArguments(bundle);
+        return fragment;
+    }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.emojicons, container, false);
+
+        unselectedTabIconColor = getArguments().getInt(TAB_ICON_COLOR, getResources().getColor(R.color.emojicons_google_keyboard_item_tertiary));
+        selectedTabIconColor = getArguments().getInt(TAB_ICON_COLOR_SELECTED, getResources().getColor(R.color.emojicons_selected_tab));
+
         final ViewPager emojisPager = (ViewPager) view.findViewById(R.id.emojis_pager);
         emojisPager.setOnPageChangeListener(this);
         // we handle recents
@@ -86,8 +106,11 @@ public class EmojiconsFragment extends Fragment implements ViewPager.OnPageChang
                     emojisPager.setCurrentItem(position);
                 }
             });
+            tintUnselected((ImageButton) mEmojiTabs[i]);
         }
-        view.findViewById(R.id.emojis_backspace).setOnTouchListener(new RepeatListener(1000, 50, new View.OnClickListener() {
+
+        ImageButton backspaceButton = (ImageButton) view.findViewById(R.id.emojis_backspace);
+        backspaceButton.setOnTouchListener(new RepeatListener(1000, 50, new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (mOnEmojiconBackspaceClickedListener != null) {
@@ -175,9 +198,9 @@ public class EmojiconsFragment extends Fragment implements ViewPager.OnPageChang
             case 4:
             case 5:
                 if (mEmojiTabLastSelectedIndex >= 0 && mEmojiTabLastSelectedIndex < mEmojiTabs.length) {
-                    mEmojiTabs[mEmojiTabLastSelectedIndex].setSelected(false);
+                    tintUnselected((ImageButton) mEmojiTabs[mEmojiTabLastSelectedIndex]);
                 }
-                mEmojiTabs[i].setSelected(true);
+                tintSelected((ImageButton) mEmojiTabs[i]);
                 mEmojiTabLastSelectedIndex = i;
                 mRecentsManager.setRecentPage(i);
                 break;
@@ -288,4 +311,13 @@ public class EmojiconsFragment extends Fragment implements ViewPager.OnPageChang
             mUseSystemDefault = false;
         }
     }
+
+    private void tintSelected(ImageButton ib) {
+        ib.setColorFilter(selectedTabIconColor);
+    }
+
+    private void tintUnselected(ImageButton ib) {
+        ib.setColorFilter(unselectedTabIconColor);
+    }
+
 }
