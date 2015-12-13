@@ -118,6 +118,7 @@ public class EmojiconsFragment extends Fragment implements ViewPager.OnPageChang
                 }
             }
         }));
+        tintUnselected(backspaceButton);
 
         // get last selected page
         mRecentsManager = EmojiconRecentsManager.getInstance(view.getContext());
