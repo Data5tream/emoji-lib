@@ -131,8 +131,7 @@ public class EmojiconsFragment extends Fragment implements ViewPager.OnPageChang
 
         if (page == 0) {
             onPageSelected(page);
-        }
-        else {
+        } else {
             emojisPager.setCurrentItem(page, false);
         }
         return view;
@@ -143,7 +142,7 @@ public class EmojiconsFragment extends Fragment implements ViewPager.OnPageChang
         super.onAttach(activity);
         if (getActivity() instanceof OnEmojiconBackspaceClickedListener) {
             mOnEmojiconBackspaceClickedListener = (OnEmojiconBackspaceClickedListener) getActivity();
-        } else if(getParentFragment() instanceof  OnEmojiconBackspaceClickedListener) {
+        } else if (getParentFragment() instanceof OnEmojiconBackspaceClickedListener) {
             mOnEmojiconBackspaceClickedListener = (OnEmojiconBackspaceClickedListener) getParentFragment();
         } else {
             throw new IllegalArgumentException(activity + " must implement interface " + OnEmojiconBackspaceClickedListener.class.getSimpleName());
