@@ -23,21 +23,19 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         ListView listView = (ListView) findViewById(R.id.list_view);
         final ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.listview_row_layout);
         listView.setAdapter(mAdapter);
+
         final EmojiconEditText emojiconEditText = (EmojiconEditText) findViewById(R.id.emojicon_edit_text);
         final View rootView = findViewById(R.id.root_view);
         final ImageView emojiButton = (ImageView) findViewById(R.id.emoji_btn);
         final ImageView submitButton = (ImageView) findViewById(R.id.submit_btn);
-
-        // Give the topmost view of your activity layout hierarchy. This will be used to measure soft keyboard height
         final EmojiconsPopup popup = new EmojiconsPopup(rootView, this);
 
-        //Will automatically set size according to the soft keyboard size
         popup.setSizeForSoftKeyboard();
 
-        //If the emoji popup is dismissed, change emojiButton to smiley icon
         popup.setOnDismissListener(new OnDismissListener() {
 
             @Override
@@ -46,7 +44,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        //If the text keyboard closes, also dismiss the emoji popup
         popup.setOnSoftKeyboardOpenCloseListener(new EmojiconsPopup.OnSoftKeyboardOpenCloseListener() {
 
             @Override
@@ -61,7 +58,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        //On emoji clicked, add it to edittext
         popup.setOnEmojiconClickedListener(new EmojiconGridView.OnEmojiconClickedListener() {
 
             @Override
@@ -82,7 +78,6 @@ public class MainActivity extends Activity {
             }
         });
 
-        //On backspace clicked, emulate the KEYCODE_DEL key event
         popup.setOnEmojiconBackspaceClickedListener(new EmojiconsPopup.OnEmojiconBackspaceClickedListener() {
 
             @Override
@@ -93,22 +88,18 @@ public class MainActivity extends Activity {
             }
         });
 
-        // To toggle between text keyboard and emoji keyboard keyboard(Popup)
         emojiButton.setOnClickListener(new OnClickListener() {
 
             @Override
             public void onClick(View v) {
 
-                //If popup is not showing => emoji keyboard is not visible, we need to show it
                 if(!popup.isShowing()){
 
-                    //If keyboard is visible, simply show the emoji popup
                     if(popup.isKeyBoardOpen()){
                         popup.showAtBottom();
                         changeEmojiKeyboardIcon(emojiButton, R.drawable.ic_emoji_symbols_light_activated);
                     }
 
-                    //else, open the text keyboard first and immediately after that show the emoji popup
                     else{
                         emojiconEditText.setFocusableInTouchMode(true);
                         emojiconEditText.requestFocus();
@@ -119,14 +110,13 @@ public class MainActivity extends Activity {
                     }
                 }
 
-                //If popup is showing, simply dismiss it to show the undelying text keyboard
                 else{
                     popup.dismiss();
                 }
             }
         });
 
-        //On submit, add the edittext text to listview and clear the edittext
+        //This doesn't work
         submitButton.setOnClickListener(new OnClickListener() {
 
             @Override
