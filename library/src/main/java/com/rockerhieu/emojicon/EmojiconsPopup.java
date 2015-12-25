@@ -61,7 +61,6 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
         View customView = createCustomView();
         setContentView(customView);
         setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-        //default size
         setSize((int) mContext.getResources().getDimension(R.dimen.keyboard_height), LayoutParams.MATCH_PARENT);
     }
     /**
@@ -96,10 +95,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
         showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
     }
     /**
-     * Use this function when the soft keyboard has not been opened yet. This
-     * will show the emoji popup after the keyboard is up next time.
-     * Generally, you will be calling InputMethodManager.showSoftInput function after
-     * calling this function.
+     * Use this function when the soft keyboard has not been opened yet.
      */
     public void showAtBottomPending() {
         if(isKeyBoardOpen())
@@ -122,8 +118,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
     @Override
     public void dismiss() {
         super.dismiss();
-        EmojiconRecentsManager
-                .getInstance(mContext).saveRecents();
+        EmojiconRecentsManager.getInstance(mContext).saveRecents();
     }
 
     /**
@@ -137,14 +132,10 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
                 rootView.getWindowVisibleDisplayFrame(r);
 
                 int screenHeight = getUsableScreenHeight();
-                int heightDifference = screenHeight
-                        - (r.bottom - r.top);
-                int resourceId = mContext.getResources()
-                        .getIdentifier("status_bar_height",
-                                "dimen", "android");
+                int heightDifference = screenHeight - (r.bottom - r.top);
+                int resourceId = mContext.getResources().getIdentifier("status_bar_height", "dimen", "android");
                 if (resourceId > 0) {
-                    heightDifference -= mContext.getResources()
-                            .getDimensionPixelSize(resourceId);
+                    heightDifference -= mContext.getResources().getDimensionPixelSize(resourceId);
                 }
                 if (heightDifference > 100) {
 
@@ -197,19 +188,18 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
         LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.emojicons, null, false);
         emojisPager = (ViewPager) view.findViewById(R.id.emojis_pager);
-        emojisPager.setOnPageChangeListener(this);
+        emojisPager.addOnPageChangeListener(this);
         EmojiconRecents recents = this;
-        mEmojisAdapter = new EmojisPagerAdapter(
-                Arrays.asList(
-                        new EmojiconRecentsGridView(mContext, null, null, this),
-                        new EmojiconGridView(mContext, People.DATA, recents, this),
-                        new EmojiconGridView(mContext, Nature.DATA, recents, this),
-                        new EmojiconGridView(mContext, Objects.DATA, recents, this),
-                        new EmojiconGridView(mContext, Places.DATA, recents, this),
-                        new EmojiconGridView(mContext, Symbols.DATA, recents, this)
-                )
-        );
+        mEmojisAdapter = new EmojisPagerAdapter(Arrays.asList(
+                new EmojiconRecentsGridView(mContext, null, null, this),
+                new EmojiconGridView(mContext, People.DATA, recents, this),
+                new EmojiconGridView(mContext, Nature.DATA, recents, this),
+                new EmojiconGridView(mContext, Objects.DATA, recents, this),
+                new EmojiconGridView(mContext, Places.DATA, recents, this),
+                new EmojiconGridView(mContext, Symbols.DATA, recents, this)
+            ));
         emojisPager.setAdapter(mEmojisAdapter);
+
         mEmojiTabs = new View[6];
         mEmojiTabs[0] = view.findViewById(R.id.emojis_tab_0_recents);
         mEmojiTabs[1] = view.findViewById(R.id.emojis_tab_1_people);
@@ -217,6 +207,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
         mEmojiTabs[3] = view.findViewById(R.id.emojis_tab_3_objects);
         mEmojiTabs[4] = view.findViewById(R.id.emojis_tab_4_cars);
         mEmojiTabs[5] = view.findViewById(R.id.emojis_tab_5_punctuation);
+
         for (int i = 0; i < mEmojiTabs.length; i++) {
             final int position = i;
             mEmojiTabs[i].setOnClickListener(new View.OnClickListener() {
@@ -226,8 +217,8 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
                 }
             });
         }
-        view.findViewById(R.id.emojis_backspace).setOnTouchListener(new RepeatListener(1000, 50, new OnClickListener() {
 
+        view.findViewById(R.id.emojis_backspace).setOnTouchListener(new RepeatListener(1000, 50, new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(onEmojiconBackspaceClickedListener != null) {
@@ -236,11 +227,8 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
             }
         }));
 
-        // get last selected page
         mRecentsManager = EmojiconRecentsManager.getInstance(view.getContext());
         int page = mRecentsManager.getRecentPage();
-        // last page was recents, check if there are recents to use
-        // if none was found, go to page 1
         if (page == 0 && mRecentsManager.size() == 0) {
             page = 1;
         }
@@ -309,13 +297,13 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
         @Override
         public Object instantiateItem(ViewGroup container, int position) {
             View v = views.get(position).rootView;
-            ((ViewPager)container).addView(v, 0);
+            (container).addView(v, 0);
             return v;
         }
 
         @Override
         public void destroyItem(ViewGroup container, int position, Object view) {
-            ((ViewPager)container).removeView((View)view);
+            (container).removeView((View)view);
         }
 
         @Override
@@ -329,9 +317,6 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
      * It cyclically runs a clickListener, emulating keyboard-like behaviour. First
      * click is fired immediately, next before initialInterval, and subsequent before
      * normalInterval.
-     * <p/>
-     * <p>Interval is scheduled before the onClick completes, so it has to run fast.
-     * If it runs slow, it does not generate skipped onClicks.
      */
     public static class RepeatListener implements View.OnTouchListener {
 
