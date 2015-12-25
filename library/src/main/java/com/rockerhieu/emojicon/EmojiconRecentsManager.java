@@ -121,7 +121,7 @@ public class EmojiconRecentsManager extends ArrayList<Emojicon> {
         }
     }
 
-    private void saveRecents() {
+    void saveRecents() {
         StringBuilder str = new StringBuilder();
         int c = size();
         for (int i = 0; i < c; i++) {

@@ -1,19 +1,3 @@
-/*
- * Copyright 2014 Hieu Rocker
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.rockerhieu.emojicon;
 
 import android.content.Context;
@@ -22,9 +6,6 @@ import android.text.style.DynamicDrawableSpan;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
-/**
- * @author Hieu Rocker (rockerhieu@gmail.com).
- */
 public class EmojiconEditText extends EditText {
     private int mEmojiconSize;
     private int mEmojiconAlignment;
@@ -63,7 +44,9 @@ public class EmojiconEditText extends EditText {
     }
 
     /**
-     * Set the size of emojicon in pixels.
+     * Set the emoji size in pixels
+     *
+     * @param pixels size of the emojis in px
      */
     public void setEmojiconSize(int pixels) {
         mEmojiconSize = pixels;
@@ -76,7 +59,9 @@ public class EmojiconEditText extends EditText {
     }
 
     /**
-     * Set whether to use system default emojicon
+     * Set if system default emojis should be used
+     *
+     * @param useSystemDefault if true default emojis are used
      */
     public void setUseSystemDefault(boolean useSystemDefault) {
         mUseSystemDefault = useSystemDefault;
