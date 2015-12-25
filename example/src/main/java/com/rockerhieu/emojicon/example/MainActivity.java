@@ -23,9 +23,9 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ListView lv = (ListView) findViewById(R.id.lv);
+        ListView listView = (ListView) findViewById(R.id.list_view);
         final ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.listview_row_layout);
-        lv.setAdapter(mAdapter);
+        listView.setAdapter(mAdapter);
         final EmojiconEditText emojiconEditText = (EmojiconEditText) findViewById(R.id.emojicon_edit_text);
         final View rootView = findViewById(R.id.root_view);
         final ImageView emojiButton = (ImageView) findViewById(R.id.emoji_btn);
