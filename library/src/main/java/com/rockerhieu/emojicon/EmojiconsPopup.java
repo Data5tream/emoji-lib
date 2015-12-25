@@ -31,6 +31,7 @@ import com.rockerhieu.emojicon.emoji.Places;
 import com.rockerhieu.emojicon.emoji.Symbols;
 
 public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChangeListener, EmojiconRecents {
+
     private int mEmojiTabLastSelectedIndex = -1;
     private View[] mEmojiTabs;
     private PagerAdapter mEmojisAdapter;
@@ -38,6 +39,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
     private int keyBoardHeight = 0;
     private Boolean pendingOpen = false;
     private Boolean isOpened = false;
+
     EmojiconGridView.OnEmojiconClickedListener onEmojiconClickedListener;
     OnEmojiconBackspaceClickedListener onEmojiconBackspaceClickedListener;
     OnSoftKeyboardOpenCloseListener onSoftKeyboardOpenCloseListener;
@@ -50,10 +52,12 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
      * @param rootView	The top most layout in your view hierarchy. The difference of this view and the screen height will be used to calculate the keyboard height.
      * @param mContext The context of current activity.
      */
-    public EmojiconsPopup(View rootView, Context mContext){
+    public EmojiconsPopup(View rootView, Context mContext) {
         super(mContext);
+
         this.mContext = mContext;
         this.rootView = rootView;
+
         View customView = createCustomView();
         setContentView(customView);
         setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
@@ -63,21 +67,21 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
     /**
      * Set the listener for the event of keyboard opening or closing.
      */
-    public void setOnSoftKeyboardOpenCloseListener(OnSoftKeyboardOpenCloseListener listener){
+    public void setOnSoftKeyboardOpenCloseListener(OnSoftKeyboardOpenCloseListener listener) {
         this.onSoftKeyboardOpenCloseListener = listener;
     }
 
     /**
      * Set the listener for the event when any of the emojicon is clicked
      */
-    public void setOnEmojiconClickedListener(EmojiconGridView.OnEmojiconClickedListener listener){
+    public void setOnEmojiconClickedListener(EmojiconGridView.OnEmojiconClickedListener listener) {
         this.onEmojiconClickedListener = listener;
     }
 
     /**
      * Set the listener for the event when backspace on emojicon popup is clicked
      */
-    public void setOnEmojiconBackspaceClickedListener(OnEmojiconBackspaceClickedListener listener){
+    public void setOnEmojiconBackspaceClickedListener(OnEmojiconBackspaceClickedListener listener) {
         this.onEmojiconBackspaceClickedListener = listener;
     }
 
@@ -88,7 +92,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
      * If that is not possible see showAtBottomPending() function.
      *
      */
-    public void showAtBottom(){
+    public void showAtBottom() {
         showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
     }
     /**
@@ -97,7 +101,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
      * Generally, you will be calling InputMethodManager.showSoftInput function after
      * calling this function.
      */
-    public void showAtBottomPending(){
+    public void showAtBottomPending() {
         if(isKeyBoardOpen())
             showAtBottom();
         else
@@ -108,7 +112,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
      *
      * @return Returns true if the soft keyboard is open, false otherwise.
      */
-    public Boolean isKeyBoardOpen(){
+    public Boolean isKeyBoardOpen() {
         return isOpened;
     }
 
@@ -125,7 +129,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
     /**
      * Call this function to resize the emoji popup according to your soft keyboard size
      */
-    public void setSizeForSoftKeyboard(){
+    public void setSizeForSoftKeyboard() {
         rootView.getViewTreeObserver().addOnGlobalLayoutListener(new OnGlobalLayoutListener() {
             @Override
             public void onGlobalLayout() {
@@ -143,22 +147,24 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
                             .getDimensionPixelSize(resourceId);
                 }
                 if (heightDifference > 100) {
+
                     keyBoardHeight = heightDifference;
                     setSize(LayoutParams.MATCH_PARENT, keyBoardHeight);
-                    if(!isOpened){
-                        if(onSoftKeyboardOpenCloseListener!=null)
-                            onSoftKeyboardOpenCloseListener.onKeyboardOpen(keyBoardHeight);
+
+                    if (!isOpened &&onSoftKeyboardOpenCloseListener!=null) {
+                        onSoftKeyboardOpenCloseListener.onKeyboardOpen(keyBoardHeight);
                     }
                     isOpened = true;
-                    if(pendingOpen){
+                    if (pendingOpen) {
                         showAtBottom();
                         pendingOpen = false;
                     }
                 }
                 else{
                     isOpened = false;
-                    if(onSoftKeyboardOpenCloseListener!=null)
+                    if (onSoftKeyboardOpenCloseListener!=null) {
                         onSoftKeyboardOpenCloseListener.onKeyboardClose();
+                    }
                 }
             }
         });
@@ -172,7 +178,6 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
             windowManager.getDefaultDisplay().getMetrics(metrics);
 
             return metrics.heightPixels;
-
         } else {
             return rootView.getRootView().getHeight();
         }
@@ -183,7 +188,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
      * @param width Width of the popup
      * @param height Height of the popup
      */
-    public void setSize(int width, int height){
+    public void setSize(int width, int height) {
         setWidth(width);
         setHeight(height);
     }
@@ -225,8 +230,9 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
 
             @Override
             public void onClick(View v) {
-                if(onEmojiconBackspaceClickedListener != null)
+                if(onEmojiconBackspaceClickedListener != null) {
                     onEmojiconBackspaceClickedListener.onEmojiconBackspaceClicked(v);
+                }
             }
         }));
 
@@ -264,21 +270,13 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
         if (mEmojiTabLastSelectedIndex == i) {
             return;
         }
-        switch (i) {
-            case 0:
-            case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-                if (mEmojiTabLastSelectedIndex >= 0 && mEmojiTabLastSelectedIndex < mEmojiTabs.length) {
-                    mEmojiTabs[mEmojiTabLastSelectedIndex].setSelected(false);
-                }
-                mEmojiTabs[i].setSelected(true);
-                mEmojiTabLastSelectedIndex = i;
-                mRecentsManager.setRecentPage(i);
-                break;
+
+        if (mEmojiTabLastSelectedIndex >= 0 && mEmojiTabLastSelectedIndex < mEmojiTabs.length) {
+            mEmojiTabs[mEmojiTabLastSelectedIndex].setSelected(false);
         }
+        mEmojiTabs[i].setSelected(true);
+        mEmojiTabLastSelectedIndex = i;
+        mRecentsManager.setRecentPage(i);
     }
 
     @Override
@@ -287,13 +285,16 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
 
     private static class EmojisPagerAdapter extends PagerAdapter {
         private List<EmojiconGridView> views;
+
         public EmojiconRecentsGridView getRecentFragment(){
             for (EmojiconGridView it : views) {
-                if(it instanceof EmojiconRecentsGridView)
-                    return (EmojiconRecentsGridView)it;
+                if(it instanceof EmojiconRecentsGridView) {
+                    return (EmojiconRecentsGridView) it;
+                }
             }
             return null;
         }
+
         public EmojisPagerAdapter(List<EmojiconGridView> views) {
             super();
             this.views = views;
@@ -341,6 +342,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
         private final View.OnClickListener clickListener;
 
         private Runnable handlerRunnable = new Runnable() {
+
             @Override
             public void run() {
                 if (downView == null) {
@@ -362,10 +364,12 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
          *                        periodically
          */
         public RepeatListener(int initialInterval, int normalInterval, View.OnClickListener clickListener) {
-            if (clickListener == null)
+            if (clickListener == null) {
                 throw new IllegalArgumentException("null runnable");
-            if (initialInterval < 0 || normalInterval < 0)
+            }
+            if (initialInterval < 0 || normalInterval < 0) {
                 throw new IllegalArgumentException("negative interval");
+            }
 
             this.initialInterval = initialInterval;
             this.normalInterval = normalInterval;

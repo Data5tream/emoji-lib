@@ -16,8 +16,9 @@ import com.rockerhieu.emojicon.emoji.People;
  * @author Hieu Rocker (rockerhieu@gmail.com)
  * @author 	Ankush Sachdeva (sankush@yahoo.co.in)
  */
-public class EmojiconGridView{
+public class EmojiconGridView {
     public View rootView;
+
     EmojiconsPopup mEmojiconPopup;
     EmojiconRecents mRecents;
     Emojicon[] mData;
@@ -28,6 +29,7 @@ public class EmojiconGridView{
         rootView = inflater.inflate(R.layout.emojicon_grid, null);
         setRecents(recents);
         GridView gridView = (GridView) rootView.findViewById(R.id.Emoji_GridView);
+
         if (emojicons== null) {
             mData = People.DATA;
         } else {

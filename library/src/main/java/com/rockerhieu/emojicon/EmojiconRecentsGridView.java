@@ -8,11 +8,9 @@ import com.rockerhieu.emojicon.emoji.Emojicon;
 public class EmojiconRecentsGridView extends EmojiconGridView implements EmojiconRecents {
     EmojiAdapter mAdapter;
 
-    public EmojiconRecentsGridView(Context context, Emojicon[] emojicons,
-                                   EmojiconRecents recents,EmojiconsPopup emojiconsPopup) {
+    public EmojiconRecentsGridView(Context context, Emojicon[] emojicons, EmojiconRecents recents,EmojiconsPopup emojiconsPopup) {
         super(context, emojicons, recents, emojiconsPopup);
-        EmojiconRecentsManager recents1 = EmojiconRecentsManager
-                .getInstance(rootView.getContext());
+        EmojiconRecentsManager recents1 = EmojiconRecentsManager.getInstance(rootView.getContext());
         mAdapter = new EmojiAdapter(rootView.getContext(),  recents1);
         mAdapter.setEmojiClickListener(new OnEmojiconClickedListener() {
 
@@ -29,8 +27,7 @@ public class EmojiconRecentsGridView extends EmojiconGridView implements Emojico
 
     @Override
     public void addRecentEmoji(Context context, Emojicon emojicon) {
-        EmojiconRecentsManager recents = EmojiconRecentsManager
-                .getInstance(context);
+        EmojiconRecentsManager recents = EmojiconRecentsManager.getInstance(context);
         recents.push(emojicon);
 
         // notify dataset changed
