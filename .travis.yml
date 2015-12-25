@@ -1,27 +1,32 @@
-branches:
-  only:
-    - master
-
 language: android
-jdk: oraclejdk7
-env:
-  global:
-  - secure: HFrTJGqM13CLydBxYKVDVzxyxML8ivAdb0Q7WZsqF0Ou+mrin9+uj4tIc6fGo5SJaXRV5pLEXE5aXfzMqhdv80WBafe0n7aQLizlOJG2Z6PhYu8ojY7hjtVnYUtYj62uoP+Vh/YgWiAjPGZ3No3NSNmJ0noJkaFkDP0xyUAs6TE=
-  - secure: QbNqQu3xj6erKQIy/r76vIjubmzqdZ8CpILRsb0S1bVuE6ntAFkyQlFUzkGgqiUXpxuXeM/U8yGQJND+S4X+zFvEnLftdkK5x/TpYLruVo+C0pSetn6AHmAeg6yRnoEOsEDbjTAMnlygwPd8T9R2TNt62HtEH/5H1w2FkGkWmrE=
-
 android:
   components:
-  - tools
-  - platform-tools
-  - extra-android-support
-  - extra-android-m2repository
-  - android-22
-  - build-tools-22.0.1
-install:
-  - ./gradlew dependencies
+    # Uncomment the lines below if you want to
+    # use the latest revision of Android SDK Tools
+    - platform-tools
+    # - tools
+
+    # The BuildTools version used by your project
+    - build-tools-23.0.1
+
+    # The SDK version used to compile your project
+    - android-23
+
+    # Additional components
+    - extra-google-google_play_services
+    - extra-google-m2repository
+    - extra-android-m2repository
+
+  licenses:
+    - android-sdk-license-.+
 
 script:
-  - ./gradlew build
+  ./gradlew build connectedCheck #--stacktrace
 
-after_success:
-  - ./gradlew uploadArchives
+notifications:
+  webhooks:
+    urls:
+      - https://webhooks.gitter.im/e/1952f97e9d115599a9b0
+    on_success: change  # options: [always|never|change] default: always
+    on_failure: always  # options: [always|never|change] default: always
+    on_start: never     # options: [always|never|change] default: always

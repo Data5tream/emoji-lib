@@ -2,7 +2,7 @@
 
 # Emojicon
 
-Do you like emojis in Whatsapp, iMessage? Emojicon is a library to implement such a thing for Android.
+This library allows apps to use emojis on devices which don't have native emoji support.
 
 This fork uses the new style created by  [@rocboronat](https://github.com/rocboronat/emojicon) and the popup keyboard created by [@ankushsachdeva](https://github.com/ankushsachdeva/emojicon).
 
