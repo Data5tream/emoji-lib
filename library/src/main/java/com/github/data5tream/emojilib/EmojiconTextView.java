@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.rockerhieu.emojicon;
+package com.github.data5tream.emojilib;
 
 import android.content.Context;
 import android.content.res.TypedArray;
@@ -25,7 +25,7 @@ import android.util.AttributeSet;
 import android.widget.TextView;
 
 /**
- * @author Hieu Rocker (rockerhieu@gmail.com).
+ * @author Hieu Rocker (github@gmail.com).
  */
 public class EmojiconTextView extends TextView {
     private int mEmojiconSize;

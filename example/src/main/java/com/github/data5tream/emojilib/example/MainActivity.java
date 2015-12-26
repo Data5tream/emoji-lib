@@ -1,4 +1,4 @@
-package com.rockerhieu.emojicon.example;
+package com.github.data5tream.emojilib.example;
 
 import android.app.Activity;
 import android.content.Context;
@@ -12,10 +12,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow.OnDismissListener;
 
-import com.rockerhieu.emojicon.EmojiconEditText;
-import com.rockerhieu.emojicon.EmojiconGridView;
-import com.rockerhieu.emojicon.EmojiconsPopup;
-import com.rockerhieu.emojicon.emoji.Emojicon;
+import com.github.data5tream.emojilib.EmojiconEditText;
+import com.github.data5tream.emojilib.EmojiconGridView;
+import com.github.data5tream.emojilib.EmojiconsPopup;
+import com.github.data5tream.emojilib.emoji.Emojicon;
 
 public class MainActivity extends Activity {
 

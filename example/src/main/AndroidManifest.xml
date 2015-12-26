@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.rockerhieu.emojicon.example" >
+    package="com.github.data5tream.emojilib.example" >
 
     <application
         android:allowBackup="true"
         android:label="@string/app_name"
         android:theme="@style/AppTheme">
         <activity
-            android:name="com.rockerhieu.emojicon.example.MainActivity"
+            android:name="com.github.data5tream.emojilib.example.MainActivity"
             android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

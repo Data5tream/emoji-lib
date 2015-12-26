@@ -14,13 +14,13 @@
  * limitations under the License.
  */
 
-package com.rockerhieu.emojicon.example;
+package com.github.data5tream.emojilib.example;
 
 import android.text.Editable;
 import android.text.TextWatcher;
 
 /**
- * @author Hieu Rocker (rockerhieu@gmail.com).
+ * @author Hieu Rocker (github@gmail.com).
  */
 public class TextWatcherAdapter implements TextWatcher {
     @Override

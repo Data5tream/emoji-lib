@@ -14,11 +14,11 @@
  * limitations under the License.
  */
 
-package com.rockerhieu.emojicon;
+package com.github.data5tream.emojilib;
 
 import android.content.Context;
 
-import com.rockerhieu.emojicon.emoji.Emojicon;
+import com.github.data5tream.emojilib.emoji.Emojicon;
 
 /**
  * @author Daniele Ricci

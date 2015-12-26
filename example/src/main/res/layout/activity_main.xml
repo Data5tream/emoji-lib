@@ -22,7 +22,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         />
-    <com.rockerhieu.emojicon.EmojiconEditText
+    <com.github.data5tream.emojilib.EmojiconEditText
         android:id="@+id/emojicon_edit_text"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.rockerhieu.emojicon;
+package com.github.data5tream.emojilib;
 
 import android.content.Context;
 import android.graphics.Canvas;
@@ -25,7 +25,7 @@ import android.text.style.DynamicDrawableSpan;
 import java.lang.ref.WeakReference;
 
 /**
- * @author Hieu Rocker (rockerhieu@gmail.com)
+ * @author Hieu Rocker (github@gmail.com)
  */
 class EmojiconSpan extends DynamicDrawableSpan {
 

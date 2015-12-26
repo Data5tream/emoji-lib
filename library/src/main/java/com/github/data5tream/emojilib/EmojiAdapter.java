@@ -1,4 +1,4 @@
-package com.rockerhieu.emojicon;
+package com.github.data5tream.emojilib;
 
 import android.content.Context;
 import android.view.View;
@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
-import com.rockerhieu.emojicon.emoji.Emojicon;
+import com.github.data5tream.emojilib.emoji.Emojicon;
 
 import java.util.List;
 

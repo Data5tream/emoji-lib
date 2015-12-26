@@ -1,29 +1,45 @@
-package com.rockerhieu.emojicon;
+/*
+ * Copyright 2014 Hieu Rocker
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *    http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.github.data5tream.emojilib;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.text.style.DynamicDrawableSpan;
 import android.util.AttributeSet;
-import android.widget.EditText;
+import android.widget.MultiAutoCompleteTextView;
 
-public class EmojiconEditText extends EditText {
+public class EmojiconMultiAutoCompleteTextView extends MultiAutoCompleteTextView {
     private int mEmojiconSize;
     private int mEmojiconAlignment;
     private int mEmojiconTextSize;
     private boolean mUseSystemDefault = false;
 
-    public EmojiconEditText(Context context) {
+    public EmojiconMultiAutoCompleteTextView(Context context) {
         super(context);
         mEmojiconSize = (int) getTextSize();
         mEmojiconTextSize = (int) getTextSize();
     }
 
-    public EmojiconEditText(Context context, AttributeSet attrs) {
+    public EmojiconMultiAutoCompleteTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    public EmojiconEditText(Context context, AttributeSet attrs, int defStyle) {
+    public EmojiconMultiAutoCompleteTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs);
     }
@@ -44,9 +60,7 @@ public class EmojiconEditText extends EditText {
     }
 
     /**
-     * Set the emoji size in pixels
-     *
-     * @param pixels size of the emojis in px
+     * Set the size of emojicon in pixels.
      */
     public void setEmojiconSize(int pixels) {
         mEmojiconSize = pixels;
@@ -59,9 +73,7 @@ public class EmojiconEditText extends EditText {
     }
 
     /**
-     * Set if system default emojis should be used
-     *
-     * @param useSystemDefault if true default emojis are used
+     * Set whether to use system default emojicon
      */
     public void setUseSystemDefault(boolean useSystemDefault) {
         mUseSystemDefault = useSystemDefault;

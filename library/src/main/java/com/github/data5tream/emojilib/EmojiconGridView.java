@@ -1,4 +1,4 @@
-package com.rockerhieu.emojicon;
+package com.github.data5tream.emojilib;
 
 import java.util.Arrays;
 
@@ -8,12 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.GridView;
 
-import com.rockerhieu.emojicon.emoji.Emojicon;
-import com.rockerhieu.emojicon.emoji.People;
+import com.github.data5tream.emojilib.emoji.Emojicon;
+import com.github.data5tream.emojilib.emoji.People;
 
 
 /**
- * @author Hieu Rocker (rockerhieu@gmail.com)
+ * @author Hieu Rocker (github@gmail.com)
  * @author 	Ankush Sachdeva (sankush@yahoo.co.in)
  */
 public class EmojiconGridView {

@@ -1,9 +1,9 @@
-package com.rockerhieu.emojicon;
+package com.github.data5tream.emojilib;
 
 import android.content.Context;
 import android.widget.GridView;
 
-import com.rockerhieu.emojicon.emoji.Emojicon;
+import com.github.data5tream.emojilib.emoji.Emojicon;
 
 public class EmojiconRecentsGridView extends EmojiconGridView implements EmojiconRecents {
     EmojiAdapter mAdapter;

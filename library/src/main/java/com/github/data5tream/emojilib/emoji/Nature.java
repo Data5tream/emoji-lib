@@ -14,10 +14,10 @@
  * limitations under the License.
  */
 
-package com.rockerhieu.emojicon.emoji;
+package com.github.data5tream.emojilib.emoji;
 
 /**
- * @author Hieu Rocker (rockerhieu@gmail.com)
+ * @author Hieu Rocker (github@gmail.com)
  */
 public class Nature {
     public static final Emojicon[] DATA = new Emojicon[]{

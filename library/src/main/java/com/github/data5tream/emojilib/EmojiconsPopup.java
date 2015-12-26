@@ -1,4 +1,4 @@
-package com.rockerhieu.emojicon;
+package com.github.data5tream.emojilib;
 
 import java.util.Arrays;
 import java.util.List;
@@ -23,12 +23,12 @@ import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
 import android.widget.PopupWindow;
 
-import com.rockerhieu.emojicon.emoji.Emojicon;
-import com.rockerhieu.emojicon.emoji.Nature;
-import com.rockerhieu.emojicon.emoji.Objects;
-import com.rockerhieu.emojicon.emoji.People;
-import com.rockerhieu.emojicon.emoji.Places;
-import com.rockerhieu.emojicon.emoji.Symbols;
+import com.github.data5tream.emojilib.emoji.Emojicon;
+import com.github.data5tream.emojilib.emoji.Nature;
+import com.github.data5tream.emojilib.emoji.Objects;
+import com.github.data5tream.emojilib.emoji.People;
+import com.github.data5tream.emojilib.emoji.Places;
+import com.github.data5tream.emojilib.emoji.Symbols;
 
 public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChangeListener, EmojiconRecents {
 

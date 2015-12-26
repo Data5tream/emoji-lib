@@ -14,12 +14,12 @@
  * limitations under the License.
  */
 
-package com.rockerhieu.emojicon;
+package com.github.data5tream.emojilib;
 
 import android.content.Context;
 import android.content.SharedPreferences;
 
-import com.rockerhieu.emojicon.emoji.Emojicon;
+import com.github.data5tream.emojilib.emoji.Emojicon;
 
 import java.util.ArrayList;
 import java.util.StringTokenizer;

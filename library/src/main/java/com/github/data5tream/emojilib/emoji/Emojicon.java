@@ -1,10 +1,10 @@
-package com.rockerhieu.emojicon.emoji;
+package com.github.data5tream.emojilib.emoji;
 
 import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * @author Hieu Rocker (rockerhieu@gmail.com)
+ * @author Hieu Rocker (github@gmail.com)
  */
 public class Emojicon implements Parcelable {
 
