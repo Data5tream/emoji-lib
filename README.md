@@ -1,29 +1,38 @@
-[![Build Status](https://travis-ci.org/Data5tream/emojicon.svg?branch=master)](https://travis-ci.org/Data5tream/emojicon)
+[![Build Status](https://travis-ci.org/Data5tream/emoji-lib.svg?branch=master)](https://travis-ci.org/Data5tream/emoji-lib)
 
-# Emojicon
+# Emoji Support Lib
 
-This library allows apps to use emojis on devices which don't have native emoji support.
+Add emoji support to your Android app!
 
-This fork uses the new style created by  [@rocboronat](https://github.com/rocboronat/emojicon) and the popup keyboard created by [@ankushsachdeva](https://github.com/ankushsachdeva/emojicon).
+This library combines the works of [@rocboronat](https://github.com/rocboronat/emojicon), [@ankushsachdeva](https://github.com/ankushsachdeva/emojicon) and [@peibumur](https://github.com/pepibumur/emojize).
 
-## Building in Android Studio
+## Installation
 
 Via Gradle:
 
 ```
-compile 'com.github.data5tream:emojicon:1.3'
+repositories {
+    ...
+    maven { url "https://jitpack.io" }
+  }
+
+...
+
+dependencies {
+    compile 'com.github.Data5tream:emoji-lib:0.0.1'
+   }
+
+
 ```
 
 
-Acknowledgements
-----------------
+## Acknowledgements
 
 Emojicon is using emojis graphics from [emoji-cheat-sheet.com](https://github.com/arvida/emoji-cheat-sheet.com/tree/master/public/graphics/emojis).
 
-This fork uses code written by [Roc Boronat](https://github.com/rocboronat) and [Ankush Sachdeva](https://github.com/ankushsachdeva).
+This project uses code published by [Roc Boronat](https://github.com/rocboronat) and [Ankush Sachdeva](https://github.com/ankushsachdeva) and has a dependency on [Guava](https://github.com/google/guava).
 
-License
--------
+## License
 
 ```
 Copyright 2015 Simon Barth
