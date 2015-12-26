@@ -1,5 +1,7 @@
 apply plugin: 'com.android.library'
-apply plugin: 'com.github.dcendents.android-maven' // ADD THIS
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.data5tream'
 
 android {
     compileSdkVersion 23
