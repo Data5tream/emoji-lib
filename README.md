@@ -6,9 +6,11 @@ Add emoji support to your Android app!
 
 This library combines the works of [@rocboronat](https://github.com/rocboronat/emojicon), [@ankushsachdeva](https://github.com/ankushsachdeva/emojicon) and [@peibumur](https://github.com/pepibumur/emojize).
 
+## Emoji Support Lib is currently being rewritten to increase performance and reduce size.
+
 ## Installation
 
-Via Gradle:
+Gradle:
 
 ```
 repositories {
@@ -24,11 +26,45 @@ dependencies {
 
 
 ```
+Maven:
+```
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 
+...
+
+  <dependency>
+    <groupId>com.github.data5tream</groupId>
+    <artifactId>emoji-lib</artifactId>
+    <version>0.0.1</version>
+  </dependency>
+```
+
+## Basic usage
+
+Use `com.github.data5tream.emojilib.EmojiTextView` and `com.github.data5tream.emojilib.EmojiEditText` in your layout XMLs to automatically represent unicode emojis.
+
+Use `EmojiParser` to convert Emoji Cheat Sheet codes into unicode characters:
+```java
+String formattedAsCheatCode = ":smile:";
+String formattedAsUnicode = EmojiParser.parseEmojis(formattedAsCheatCode);
+```
+`formattedAsUnicode` will be: :smile:
+
+You can also use `EmojiParser` to convert unicode emojis into Emoji Cheat Sheet codes:
+```java
+String formattedAsUnicode = "😄";
+String formattedAsCheatCode = EmojiParser.convertToCheatCode(formattedAsUnicode);
+```
+`formattedAsCheatCode` will be: `:smile:`
 
 ## Acknowledgements
 
-Emojicon is using emojis graphics from [emoji-cheat-sheet.com](https://github.com/arvida/emoji-cheat-sheet.com/tree/master/public/graphics/emojis).
+Emoji Support Lib uses emoji graphics from [emoji-cheat-sheet.com](https://github.com/arvida/emoji-cheat-sheet.com/tree/master/public/graphics/emojis).
 
 This project uses code published by [Roc Boronat](https://github.com/rocboronat) and [Ankush Sachdeva](https://github.com/ankushsachdeva) and has a dependency on [Guava](https://github.com/google/guava).
 
