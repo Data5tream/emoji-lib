@@ -6,24 +6,24 @@ import android.text.style.DynamicDrawableSpan;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
-public class EmojiconEditText extends EditText {
+public class EmojiEditText extends EditText {
     private int mEmojiconSize;
     private int mEmojiconAlignment;
     private int mEmojiconTextSize;
     private boolean mUseSystemDefault = false;
 
-    public EmojiconEditText(Context context) {
+    public EmojiEditText(Context context) {
         super(context);
         mEmojiconSize = (int) getTextSize();
         mEmojiconTextSize = (int) getTextSize();
     }
 
-    public EmojiconEditText(Context context, AttributeSet attrs) {
+    public EmojiEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    public EmojiconEditText(Context context, AttributeSet attrs, int defStyle) {
+    public EmojiEditText(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs);
     }
@@ -55,7 +55,7 @@ public class EmojiconEditText extends EditText {
     }
 
     private void updateText() {
-        EmojiconHandler.addEmojis(getContext(), getText(), mEmojiconSize, mEmojiconAlignment, mEmojiconTextSize, mUseSystemDefault);
+        EmojiHandler.addEmojis(getContext(), getText(), mEmojiconSize, mEmojiconAlignment, mEmojiconTextSize, mUseSystemDefault);
     }
 
     /**

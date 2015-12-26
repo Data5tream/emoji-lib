@@ -27,28 +27,28 @@ import java.util.StringTokenizer;
 /**
  * @author Daniele Ricci
  */
-public class EmojiconRecentsManager extends ArrayList<Emojicon> {
+public class EmojiRecentsManager extends ArrayList<Emojicon> {
     private static final String DELIMITER = ",";
     private static final String PREFERENCE_NAME = "emojicon";
     private static final String PREF_RECENTS = "recent_emojis";
     private static final String PREF_PAGE = "recent_page";
 
     private static final Object LOCK = new Object();
-    private static EmojiconRecentsManager sInstance;
+    private static EmojiRecentsManager sInstance;
     private static int maximumSize = 40;
 
     private Context mContext;
 
-    private EmojiconRecentsManager(Context context) {
+    private EmojiRecentsManager(Context context) {
         mContext = context.getApplicationContext();
         loadRecents();
     }
 
-    public static EmojiconRecentsManager getInstance(Context context) {
+    public static EmojiRecentsManager getInstance(Context context) {
         if (sInstance == null) {
             synchronized (LOCK) {
                 if (sInstance == null) {
-                    sInstance = new EmojiconRecentsManager(context);
+                    sInstance = new EmojiRecentsManager(context);
                 }
             }
         }
@@ -76,7 +76,7 @@ public class EmojiconRecentsManager extends ArrayList<Emojicon> {
     public boolean add(Emojicon object) {
         boolean ret = super.add(object);
 
-        while (this.size() > EmojiconRecentsManager.maximumSize) {
+        while (this.size() > EmojiRecentsManager.maximumSize) {
             super.remove(0);
         }
 
@@ -89,11 +89,11 @@ public class EmojiconRecentsManager extends ArrayList<Emojicon> {
         super.add(index, object);
 
         if (index == 0) {
-            while (this.size() > EmojiconRecentsManager.maximumSize) {
-                super.remove(EmojiconRecentsManager.maximumSize);
+            while (this.size() > EmojiRecentsManager.maximumSize) {
+                super.remove(EmojiRecentsManager.maximumSize);
             }
         } else {
-            while (this.size() > EmojiconRecentsManager.maximumSize) {
+            while (this.size() > EmojiRecentsManager.maximumSize) {
                 super.remove(0);
             }
         }
@@ -115,7 +115,7 @@ public class EmojiconRecentsManager extends ArrayList<Emojicon> {
     private void loadRecents() {
         SharedPreferences prefs = getPreferences();
         String str = prefs.getString(PREF_RECENTS, "");
-        StringTokenizer tokenizer = new StringTokenizer(str, EmojiconRecentsManager.DELIMITER);
+        StringTokenizer tokenizer = new StringTokenizer(str, EmojiRecentsManager.DELIMITER);
         while (tokenizer.hasMoreTokens()) {
             add(Emojicon.fromChars(tokenizer.nextToken()));
         }
@@ -128,7 +128,7 @@ public class EmojiconRecentsManager extends ArrayList<Emojicon> {
             Emojicon e = get(i);
             str.append(e.getEmoji());
             if (i < (c - 1)) {
-                str.append(EmojiconRecentsManager.DELIMITER);
+                str.append(EmojiRecentsManager.DELIMITER);
             }
         }
         SharedPreferences prefs = getPreferences();
@@ -136,6 +136,6 @@ public class EmojiconRecentsManager extends ArrayList<Emojicon> {
     }
 
     public static void setMaximumSize(int maximumSize) {
-        EmojiconRecentsManager.maximumSize = maximumSize;
+        EmojiRecentsManager.maximumSize = maximumSize;
     }
 }

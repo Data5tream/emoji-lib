@@ -23,6 +23,6 @@ import com.github.data5tream.emojilib.emoji.Emojicon;
 /**
  * @author Daniele Ricci
  */
-public interface EmojiconRecents {
+public interface EmojiRecents {
     public void addRecentEmoji(Context context, Emojicon emojicon);
 }

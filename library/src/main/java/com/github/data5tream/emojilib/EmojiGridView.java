@@ -16,14 +16,14 @@ import com.github.data5tream.emojilib.emoji.People;
  * @author Hieu Rocker (github@gmail.com)
  * @author 	Ankush Sachdeva (sankush@yahoo.co.in)
  */
-public class EmojiconGridView {
+public class EmojiGridView {
     public View rootView;
 
-    EmojiconsPopup mEmojiconPopup;
-    EmojiconRecents mRecents;
+    EmojiPopup mEmojiconPopup;
+    EmojiRecents mRecents;
     Emojicon[] mData;
 
-    public EmojiconGridView(Context context, Emojicon[] emojicons, EmojiconRecents recents, EmojiconsPopup emojiconPopup) {
+    public EmojiGridView(Context context, Emojicon[] emojicons, EmojiRecents recents, EmojiPopup emojiconPopup) {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         mEmojiconPopup = emojiconPopup;
         rootView = inflater.inflate(R.layout.emojicon_grid, null);
@@ -52,7 +52,7 @@ public class EmojiconGridView {
         gridView.setAdapter(mAdapter);
     }
 
-    private void setRecents(EmojiconRecents recents) {
+    private void setRecents(EmojiRecents recents) {
         mRecents = recents;
     }
 

@@ -12,7 +12,7 @@ import com.github.data5tream.emojilib.emoji.Emojicon;
 import java.util.List;
 
 class EmojiAdapter extends ArrayAdapter<Emojicon> {
-    EmojiconGridView.OnEmojiconClickedListener emojiClickListener;
+    EmojiGridView.OnEmojiconClickedListener emojiClickListener;
     public EmojiAdapter(Context context, List<Emojicon> data) {
         super(context, R.layout.emojicon_item, data);
     }
@@ -21,7 +21,7 @@ class EmojiAdapter extends ArrayAdapter<Emojicon> {
         super(context, R.layout.emojicon_item, data);
     }
 
-    public void setEmojiClickListener(EmojiconGridView.OnEmojiconClickedListener listener){
+    public void setEmojiClickListener(EmojiGridView.OnEmojiconClickedListener listener){
         this.emojiClickListener = listener;
     }
 

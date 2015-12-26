@@ -27,7 +27,7 @@ import android.widget.TextView;
 /**
  * @author Hieu Rocker (github@gmail.com).
  */
-public class EmojiconTextView extends TextView {
+public class EmojiTextView extends TextView {
     private int mEmojiconSize;
     private int mEmojiconAlignment;
     private int mEmojiconTextSize;
@@ -35,17 +35,17 @@ public class EmojiconTextView extends TextView {
     private int mTextLength = -1;
     private boolean mUseSystemDefault = false;
 
-    public EmojiconTextView(Context context) {
+    public EmojiTextView(Context context) {
         super(context);
         init(null);
     }
 
-    public EmojiconTextView(Context context, AttributeSet attrs) {
+    public EmojiTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    public EmojiconTextView(Context context, AttributeSet attrs, int defStyle) {
+    public EmojiTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs);
     }
@@ -70,7 +70,7 @@ public class EmojiconTextView extends TextView {
     public void setText(CharSequence text, BufferType type) {
         if (!TextUtils.isEmpty(text)) {
             SpannableStringBuilder builder = new SpannableStringBuilder(text);
-            EmojiconHandler.addEmojis(getContext(), builder, mEmojiconSize, mEmojiconAlignment, mEmojiconTextSize, mTextStart, mTextLength, mUseSystemDefault);
+            EmojiHandler.addEmojis(getContext(), builder, mEmojiconSize, mEmojiconAlignment, mEmojiconTextSize, mTextStart, mTextLength, mUseSystemDefault);
             text = builder;
         }
         super.setText(text, type);

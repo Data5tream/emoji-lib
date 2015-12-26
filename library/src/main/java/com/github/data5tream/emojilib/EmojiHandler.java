@@ -25,8 +25,8 @@ import java.util.Map;
 /**
  * @author Hieu Rocker (github@gmail.com)
  */
-public final class EmojiconHandler {
-    private EmojiconHandler() {
+public final class EmojiHandler {
+    private EmojiHandler() {
     }
 
     private static final SparseIntArray sEmojisMap = new SparseIntArray(1029);
@@ -1622,7 +1622,7 @@ public final class EmojiconHandler {
         int textLengthToProcess = length < 0 || length >= textLengthToProcessMax ? textLength : (length + index);
 
         // remove spans throughout all text
-        EmojiconSpan[] oldSpans = text.getSpans(0, textLength, EmojiconSpan.class);
+        EmojiSpan[] oldSpans = text.getSpans(0, textLength, EmojiSpan.class);
         for (int i = 0; i < oldSpans.length; i++) {
             text.removeSpan(oldSpans[i]);
         }
@@ -1709,7 +1709,7 @@ public final class EmojiconHandler {
             }
 
             if (icon > 0) {
-                text.setSpan(new EmojiconSpan(context, icon, emojiSize, emojiAlignment, textSize), i, i + skip, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
+                text.setSpan(new EmojiSpan(context, icon, emojiSize, emojiAlignment, textSize), i, i + skip, Spannable.SPAN_EXCLUSIVE_EXCLUSIVE);
             }
         }
     }

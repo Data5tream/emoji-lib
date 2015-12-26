@@ -27,7 +27,7 @@ import java.lang.ref.WeakReference;
 /**
  * @author Hieu Rocker (github@gmail.com)
  */
-class EmojiconSpan extends DynamicDrawableSpan {
+class EmojiSpan extends DynamicDrawableSpan {
 
     private final Context mContext;
 
@@ -47,7 +47,7 @@ class EmojiconSpan extends DynamicDrawableSpan {
 
     private WeakReference<Drawable> mDrawableRef;
 
-    public EmojiconSpan(Context context, int resourceId, int size, int alignment, int textSize) {
+    public EmojiSpan(Context context, int resourceId, int size, int alignment, int textSize) {
         super(alignment);
         mContext = context;
         mResourceId = resourceId;

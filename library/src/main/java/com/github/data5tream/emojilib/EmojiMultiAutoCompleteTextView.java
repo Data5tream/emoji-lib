@@ -22,24 +22,24 @@ import android.text.style.DynamicDrawableSpan;
 import android.util.AttributeSet;
 import android.widget.MultiAutoCompleteTextView;
 
-public class EmojiconMultiAutoCompleteTextView extends MultiAutoCompleteTextView {
+public class EmojiMultiAutoCompleteTextView extends MultiAutoCompleteTextView {
     private int mEmojiconSize;
     private int mEmojiconAlignment;
     private int mEmojiconTextSize;
     private boolean mUseSystemDefault = false;
 
-    public EmojiconMultiAutoCompleteTextView(Context context) {
+    public EmojiMultiAutoCompleteTextView(Context context) {
         super(context);
         mEmojiconSize = (int) getTextSize();
         mEmojiconTextSize = (int) getTextSize();
     }
 
-    public EmojiconMultiAutoCompleteTextView(Context context, AttributeSet attrs) {
+    public EmojiMultiAutoCompleteTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
-    public EmojiconMultiAutoCompleteTextView(Context context, AttributeSet attrs, int defStyle) {
+    public EmojiMultiAutoCompleteTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs);
     }
@@ -69,7 +69,7 @@ public class EmojiconMultiAutoCompleteTextView extends MultiAutoCompleteTextView
     }
 
     private void updateText() {
-        EmojiconHandler.addEmojis(getContext(), getText(), mEmojiconSize, mEmojiconAlignment, mEmojiconTextSize, mUseSystemDefault);
+        EmojiHandler.addEmojis(getContext(), getText(), mEmojiconSize, mEmojiconAlignment, mEmojiconTextSize, mUseSystemDefault);
     }
 
     /**

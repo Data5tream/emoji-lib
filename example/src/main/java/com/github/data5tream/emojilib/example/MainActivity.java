@@ -12,9 +12,9 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.PopupWindow.OnDismissListener;
 
-import com.github.data5tream.emojilib.EmojiconEditText;
-import com.github.data5tream.emojilib.EmojiconGridView;
-import com.github.data5tream.emojilib.EmojiconsPopup;
+import com.github.data5tream.emojilib.EmojiEditText;
+import com.github.data5tream.emojilib.EmojiGridView;
+import com.github.data5tream.emojilib.EmojiPopup;
 import com.github.data5tream.emojilib.emoji.Emojicon;
 
 public class MainActivity extends Activity {
@@ -28,11 +28,11 @@ public class MainActivity extends Activity {
         final ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.listview_row_layout);
         listView.setAdapter(mAdapter);
 
-        final EmojiconEditText emojiconEditText = (EmojiconEditText) findViewById(R.id.emojicon_edit_text);
+        final EmojiEditText emojiEditText = (EmojiEditText) findViewById(R.id.emojicon_edit_text);
         final View rootView = findViewById(R.id.root_view);
         final ImageView emojiButton = (ImageView) findViewById(R.id.emoji_btn);
         final ImageView submitButton = (ImageView) findViewById(R.id.submit_btn);
-        final EmojiconsPopup popup = new EmojiconsPopup(rootView, this);
+        final EmojiPopup popup = new EmojiPopup(rootView, this);
 
         popup.setSizeForSoftKeyboard();
 
@@ -44,7 +44,7 @@ public class MainActivity extends Activity {
             }
         });
 
-        popup.setOnSoftKeyboardOpenCloseListener(new EmojiconsPopup.OnSoftKeyboardOpenCloseListener() {
+        popup.setOnSoftKeyboardOpenCloseListener(new EmojiPopup.OnSoftKeyboardOpenCloseListener() {
 
             @Override
             public void onKeyboardOpen(int keyBoardHeight) {
@@ -58,33 +58,33 @@ public class MainActivity extends Activity {
             }
         });
 
-        popup.setOnEmojiconClickedListener(new EmojiconGridView.OnEmojiconClickedListener() {
+        popup.setOnEmojiconClickedListener(new EmojiGridView.OnEmojiconClickedListener() {
 
             @Override
             public void onEmojiconClicked(Emojicon emojicon) {
-                if (emojiconEditText == null || emojicon == null) {
+                if (emojiEditText == null || emojicon == null) {
                     return;
                 }
 
-                int start = emojiconEditText.getSelectionStart();
-                int end = emojiconEditText.getSelectionEnd();
+                int start = emojiEditText.getSelectionStart();
+                int end = emojiEditText.getSelectionEnd();
                 if (start < 0) {
-                    emojiconEditText.append(emojicon.getEmoji());
+                    emojiEditText.append(emojicon.getEmoji());
                 } else {
-                    emojiconEditText.getText().replace(Math.min(start, end),
+                    emojiEditText.getText().replace(Math.min(start, end),
                             Math.max(start, end), emojicon.getEmoji(), 0,
                             emojicon.getEmoji().length());
                 }
             }
         });
 
-        popup.setOnEmojiconBackspaceClickedListener(new EmojiconsPopup.OnEmojiconBackspaceClickedListener() {
+        popup.setOnEmojiconBackspaceClickedListener(new EmojiPopup.OnEmojiconBackspaceClickedListener() {
 
             @Override
             public void onEmojiconBackspaceClicked(View v) {
                 KeyEvent event = new KeyEvent(
                         0, 0, 0, KeyEvent.KEYCODE_DEL, 0, 0, 0, 0, KeyEvent.KEYCODE_ENDCALL);
-                emojiconEditText.dispatchKeyEvent(event);
+                emojiEditText.dispatchKeyEvent(event);
             }
         });
 
@@ -101,11 +101,11 @@ public class MainActivity extends Activity {
                     }
 
                     else{
-                        emojiconEditText.setFocusableInTouchMode(true);
-                        emojiconEditText.requestFocus();
+                        emojiEditText.setFocusableInTouchMode(true);
+                        emojiEditText.requestFocus();
                         popup.showAtBottomPending();
                         final InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                        inputMethodManager.showSoftInput(emojiconEditText, InputMethodManager.SHOW_IMPLICIT);
+                        inputMethodManager.showSoftInput(emojiEditText, InputMethodManager.SHOW_IMPLICIT);
                         changeEmojiKeyboardIcon(emojiButton, R.drawable.ic_emoji_people_light_activated);
                     }
                 }
@@ -121,8 +121,8 @@ public class MainActivity extends Activity {
 
             @Override
             public void onClick(View v) {
-                String newText = emojiconEditText.getText().toString();
-                emojiconEditText.getText().clear();
+                String newText = emojiEditText.getText().toString();
+                emojiEditText.getText().clear();
                 mAdapter.add(newText);
                 mAdapter.notifyDataSetChanged();
 

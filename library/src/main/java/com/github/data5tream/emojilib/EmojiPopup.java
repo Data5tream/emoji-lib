@@ -30,17 +30,17 @@ import com.github.data5tream.emojilib.emoji.People;
 import com.github.data5tream.emojilib.emoji.Places;
 import com.github.data5tream.emojilib.emoji.Symbols;
 
-public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChangeListener, EmojiconRecents {
+public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeListener, EmojiRecents {
 
     private int mEmojiTabLastSelectedIndex = -1;
     private View[] mEmojiTabs;
     private PagerAdapter mEmojisAdapter;
-    private EmojiconRecentsManager mRecentsManager;
+    private EmojiRecentsManager mRecentsManager;
     private int keyBoardHeight = 0;
     private Boolean pendingOpen = false;
     private Boolean isOpened = false;
 
-    EmojiconGridView.OnEmojiconClickedListener onEmojiconClickedListener;
+    EmojiGridView.OnEmojiconClickedListener onEmojiconClickedListener;
     OnEmojiconBackspaceClickedListener onEmojiconBackspaceClickedListener;
     OnSoftKeyboardOpenCloseListener onSoftKeyboardOpenCloseListener;
     View rootView;
@@ -52,7 +52,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
      * @param rootView	The top most layout in your view hierarchy. The difference of this view and the screen height will be used to calculate the keyboard height.
      * @param mContext The context of current activity.
      */
-    public EmojiconsPopup(View rootView, Context mContext) {
+    public EmojiPopup(View rootView, Context mContext) {
         super(mContext);
 
         this.mContext = mContext;
@@ -73,7 +73,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
     /**
      * Set the listener for the event when any of the emojicon is clicked
      */
-    public void setOnEmojiconClickedListener(EmojiconGridView.OnEmojiconClickedListener listener) {
+    public void setOnEmojiconClickedListener(EmojiGridView.OnEmojiconClickedListener listener) {
         this.onEmojiconClickedListener = listener;
     }
 
@@ -118,7 +118,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
     @Override
     public void dismiss() {
         super.dismiss();
-        EmojiconRecentsManager.getInstance(mContext).saveRecents();
+        EmojiRecentsManager.getInstance(mContext).saveRecents();
     }
 
     /**
@@ -189,14 +189,14 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
         View view = inflater.inflate(R.layout.emojicons, null, false);
         emojisPager = (ViewPager) view.findViewById(R.id.emojis_pager);
         emojisPager.addOnPageChangeListener(this);
-        EmojiconRecents recents = this;
+        EmojiRecents recents = this;
         mEmojisAdapter = new EmojisPagerAdapter(Arrays.asList(
-                new EmojiconRecentsGridView(mContext, null, null, this),
-                new EmojiconGridView(mContext, People.DATA, recents, this),
-                new EmojiconGridView(mContext, Nature.DATA, recents, this),
-                new EmojiconGridView(mContext, Objects.DATA, recents, this),
-                new EmojiconGridView(mContext, Places.DATA, recents, this),
-                new EmojiconGridView(mContext, Symbols.DATA, recents, this)
+                new EmojiRecentsGridView(mContext, null, null, this),
+                new EmojiGridView(mContext, People.DATA, recents, this),
+                new EmojiGridView(mContext, Nature.DATA, recents, this),
+                new EmojiGridView(mContext, Objects.DATA, recents, this),
+                new EmojiGridView(mContext, Places.DATA, recents, this),
+                new EmojiGridView(mContext, Symbols.DATA, recents, this)
             ));
         emojisPager.setAdapter(mEmojisAdapter);
 
@@ -227,7 +227,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
             }
         }));
 
-        mRecentsManager = EmojiconRecentsManager.getInstance(view.getContext());
+        mRecentsManager = EmojiRecentsManager.getInstance(view.getContext());
         int page = mRecentsManager.getRecentPage();
         if (page == 0 && mRecentsManager.size() == 0) {
             page = 1;
@@ -244,7 +244,7 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
 
     @Override
     public void addRecentEmoji(Context context, Emojicon emojicon) {
-        EmojiconRecentsGridView fragment = ((EmojisPagerAdapter)emojisPager.getAdapter()).getRecentFragment();
+        EmojiRecentsGridView fragment = ((EmojisPagerAdapter)emojisPager.getAdapter()).getRecentFragment();
         fragment.addRecentEmoji(context, emojicon);
     }
 
@@ -272,18 +272,18 @@ public class EmojiconsPopup extends PopupWindow implements ViewPager.OnPageChang
     }
 
     private static class EmojisPagerAdapter extends PagerAdapter {
-        private List<EmojiconGridView> views;
+        private List<EmojiGridView> views;
 
-        public EmojiconRecentsGridView getRecentFragment(){
-            for (EmojiconGridView it : views) {
-                if(it instanceof EmojiconRecentsGridView) {
-                    return (EmojiconRecentsGridView) it;
+        public EmojiRecentsGridView getRecentFragment(){
+            for (EmojiGridView it : views) {
+                if(it instanceof EmojiRecentsGridView) {
+                    return (EmojiRecentsGridView) it;
                 }
             }
             return null;
         }
 
-        public EmojisPagerAdapter(List<EmojiconGridView> views) {
+        public EmojisPagerAdapter(List<EmojiGridView> views) {
             super();
             this.views = views;
         }
