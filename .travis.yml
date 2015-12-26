@@ -23,6 +23,10 @@ android:
 script:
   ./gradlew build connectedCheck #--stacktrace
 
+addons:
+    code_climate:
+        repo_token: ddafe3189d642d843cfea385eeef3d5855d95892cd737065bc351c4957eabfec
+
 notifications:
   webhooks:
     urls:
