@@ -30,6 +30,12 @@ import com.github.data5tream.emojilib.emoji.People;
 import com.github.data5tream.emojilib.emoji.Places;
 import com.github.data5tream.emojilib.emoji.Symbols;
 
+/**
+ * @author Ankush Sachdeva
+ * @author data5tream
+ *
+ * @since 0.0.1
+ */
 public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeListener, EmojiRecents {
 
     private int mEmojiTabLastSelectedIndex = -1;
@@ -43,59 +49,69 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
     EmojiGridView.OnEmojiconClickedListener onEmojiconClickedListener;
     OnEmojiconBackspaceClickedListener onEmojiconBackspaceClickedListener;
     OnSoftKeyboardOpenCloseListener onSoftKeyboardOpenCloseListener;
+
     View rootView;
-    Context mContext;
+    Context context;
 
     private ViewPager emojisPager;
+
     /**
      * Constructor
+     *
      * @param rootView	The top most layout in your view hierarchy. The difference of this view and the screen height will be used to calculate the keyboard height.
-     * @param mContext The context of current activity.
+     * @param context The context of current activity.
      */
-    public EmojiPopup(View rootView, Context mContext) {
-        super(mContext);
+    public EmojiPopup(View rootView, Context context) {
+        super(context);
 
-        this.mContext = mContext;
+        this.context = context;
         this.rootView = rootView;
 
         View customView = createCustomView();
         setContentView(customView);
         setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
-        setSize((int) mContext.getResources().getDimension(R.dimen.keyboard_height), LayoutParams.MATCH_PARENT);
+        setSize((int) context.getResources().getDimension(R.dimen.keyboard_height), LayoutParams.MATCH_PARENT);
     }
+
     /**
      * Set the listener for the event of keyboard opening or closing.
+     *
+     * @param listener the listener to be used
      */
     public void setOnSoftKeyboardOpenCloseListener(OnSoftKeyboardOpenCloseListener listener) {
         this.onSoftKeyboardOpenCloseListener = listener;
     }
 
     /**
-     * Set the listener for the event when any of the emojicon is clicked
+     * Set the listener triggered when any of the emojis is clicked.
+     *
+     * @param listener the listener to be used
      */
     public void setOnEmojiconClickedListener(EmojiGridView.OnEmojiconClickedListener listener) {
         this.onEmojiconClickedListener = listener;
     }
 
     /**
-     * Set the listener for the event when backspace on emojicon popup is clicked
+     * Set the listener for the event when the backspace on the emoji-keyboard is clicked.
+     *
+     * @param listener the listener to be used
      */
     public void setOnEmojiconBackspaceClickedListener(OnEmojiconBackspaceClickedListener listener) {
         this.onEmojiconBackspaceClickedListener = listener;
     }
 
     /**
-     * Use this function to show the emoji popup.
-     * NOTE: Since, the soft keyboard sizes are variable on different android devices, the
-     * library needs you to open the soft keyboard atleast once before calling this function.
-     * If that is not possible see showAtBottomPending() function.
+     * Function to show the emoji-keyboard.
      *
+     * NOTE: Since, the soft keyboard sizes are variable on different android devices, the
+     * library needs you to open the soft keyboard at least once before calling this function.
      */
     public void showAtBottom() {
         showAtLocation(rootView, Gravity.BOTTOM, 0, 0);
     }
+
     /**
-     * Use this function when the soft keyboard has not been opened yet.
+     * Use this function if the soft keyboard hasn't been opened when the emoji-keyboard is triggered.
      */
     public void showAtBottomPending() {
         if(isKeyBoardOpen())
@@ -118,7 +134,7 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
     @Override
     public void dismiss() {
         super.dismiss();
-        EmojiRecentsManager.getInstance(mContext).saveRecents();
+        EmojiRecentsManager.getInstance(context).saveRecents();
     }
 
     /**
@@ -133,9 +149,9 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
 
                 int screenHeight = getUsableScreenHeight();
                 int heightDifference = screenHeight - (r.bottom - r.top);
-                int resourceId = mContext.getResources().getIdentifier("status_bar_height", "dimen", "android");
+                int resourceId = context.getResources().getIdentifier("status_bar_height", "dimen", "android");
                 if (resourceId > 0) {
-                    heightDifference -= mContext.getResources().getDimensionPixelSize(resourceId);
+                    heightDifference -= context.getResources().getDimensionPixelSize(resourceId);
                 }
                 if (heightDifference > 100) {
 
@@ -165,7 +181,7 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
             DisplayMetrics metrics = new DisplayMetrics();
 
-            WindowManager windowManager = (WindowManager) mContext.getSystemService(Context.WINDOW_SERVICE);
+            WindowManager windowManager = (WindowManager) context.getSystemService(Context.WINDOW_SERVICE);
             windowManager.getDefaultDisplay().getMetrics(metrics);
 
             return metrics.heightPixels;
@@ -175,7 +191,8 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
     }
 
     /**
-     * Manually set the popup window size
+     * Manually set the popup window size.
+     *
      * @param width Width of the popup
      * @param height Height of the popup
      */
@@ -185,18 +202,18 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
     }
 
     private View createCustomView() {
-        LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
+        LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.emojicons, null, false);
         emojisPager = (ViewPager) view.findViewById(R.id.emojis_pager);
         emojisPager.addOnPageChangeListener(this);
         EmojiRecents recents = this;
         mEmojisAdapter = new EmojisPagerAdapter(Arrays.asList(
-                new EmojiRecentsGridView(mContext, null, null, this),
-                new EmojiGridView(mContext, People.DATA, recents, this),
-                new EmojiGridView(mContext, Nature.DATA, recents, this),
-                new EmojiGridView(mContext, Objects.DATA, recents, this),
-                new EmojiGridView(mContext, Places.DATA, recents, this),
-                new EmojiGridView(mContext, Symbols.DATA, recents, this)
+                new EmojiRecentsGridView(context, null, null, this),
+                new EmojiGridView(context, People.DATA, recents, this),
+                new EmojiGridView(context, Nature.DATA, recents, this),
+                new EmojiGridView(context, Objects.DATA, recents, this),
+                new EmojiGridView(context, Places.DATA, recents, this),
+                new EmojiGridView(context, Symbols.DATA, recents, this)
             ));
         emojisPager.setAdapter(mEmojisAdapter);
 

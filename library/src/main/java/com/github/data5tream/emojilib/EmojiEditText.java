@@ -6,28 +6,59 @@ import android.text.style.DynamicDrawableSpan;
 import android.util.AttributeSet;
 import android.widget.EditText;
 
+/**
+ * @author Hieu Rocker
+ * @author data5tream
+ *
+ * @since 0.0.1
+ */
 public class EmojiEditText extends EditText {
     private int mEmojiconSize;
     private int mEmojiconAlignment;
     private int mEmojiconTextSize;
     private boolean mUseSystemDefault = false;
 
+    /**
+     * Constructor
+     *
+     * @param context calling context
+     */
     public EmojiEditText(Context context) {
         super(context);
         mEmojiconSize = (int) getTextSize();
         mEmojiconTextSize = (int) getTextSize();
     }
 
+    /**
+     * Constructor
+     *
+     * @param context calling context
+     * @param attrs See @init
+     */
     public EmojiEditText(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
+    /**
+     * Constructor
+     *
+     * @param context calling context
+     * @param attrs See @init
+     */
     public EmojiEditText(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs);
     }
 
+    /**
+     * Set attributes for the emoji representation
+     *
+     * @param attrs AttributeSet containing:
+     *              emojiconSize = Display size of the emojis in pixel
+     *              emojiconAlignment = Line alignment of the emojis (bottom or baseline)
+     *              emojiconUseSystemDefault = Boolean indicating if system default emojis should be used
+     */
     private void init(AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.Emojicon);
         mEmojiconSize = (int) a.getDimension(R.styleable.Emojicon_emojiconSize, getTextSize());
@@ -54,6 +85,9 @@ public class EmojiEditText extends EditText {
         updateText();
     }
 
+    /**
+     * Update text to show new emojis
+     */
     private void updateText() {
         EmojiHandler.addEmojis(getContext(), getText(), mEmojiconSize, mEmojiconAlignment, mEmojiconTextSize, mUseSystemDefault);
     }
@@ -61,7 +95,7 @@ public class EmojiEditText extends EditText {
     /**
      * Set if system default emojis should be used
      *
-     * @param useSystemDefault if true default emojis are used
+     * @param useSystemDefault if true system emojis are used (default false)
      */
     public void setUseSystemDefault(boolean useSystemDefault) {
         mUseSystemDefault = useSystemDefault;

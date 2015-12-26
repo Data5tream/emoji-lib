@@ -4,7 +4,9 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 /**
- * @author Hieu Rocker (github@gmail.com)
+ * @author Hieu Rocker
+ *
+ * @since 0.0.1
  */
 public class Emojicon implements Parcelable {
 

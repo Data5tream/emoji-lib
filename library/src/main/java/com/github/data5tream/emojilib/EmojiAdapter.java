@@ -11,6 +11,13 @@ import com.github.data5tream.emojilib.emoji.Emojicon;
 
 import java.util.List;
 
+/**
+ * @author Hieu Rocker
+ * @author Ankush Sachdeva
+ * @author data5tream
+ *
+ * @since 0.0.1
+ */
 class EmojiAdapter extends ArrayAdapter<Emojicon> {
     EmojiGridView.OnEmojiconClickedListener emojiClickListener;
     public EmojiAdapter(Context context, List<Emojicon> data) {
@@ -21,6 +28,11 @@ class EmojiAdapter extends ArrayAdapter<Emojicon> {
         super(context, R.layout.emojicon_item, data);
     }
 
+    /**
+     * Set listener to be triggered when an emoji is clicked
+     *
+     * @param listener the listener to be used
+     */
     public void setEmojiClickListener(EmojiGridView.OnEmojiconClickedListener listener){
         this.emojiClickListener = listener;
     }

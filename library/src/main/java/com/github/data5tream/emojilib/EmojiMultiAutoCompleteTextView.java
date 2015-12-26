@@ -1,19 +1,3 @@
-/*
- * Copyright 2014 Hieu Rocker
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 package com.github.data5tream.emojilib;
 
 import android.content.Context;
@@ -22,28 +6,59 @@ import android.text.style.DynamicDrawableSpan;
 import android.util.AttributeSet;
 import android.widget.MultiAutoCompleteTextView;
 
+/**
+ * @author Hieu Rocker
+ * @author data5tream
+ *
+ * @since 0.0.1
+ */
 public class EmojiMultiAutoCompleteTextView extends MultiAutoCompleteTextView {
     private int mEmojiconSize;
     private int mEmojiconAlignment;
     private int mEmojiconTextSize;
     private boolean mUseSystemDefault = false;
 
+    /**
+     * Constructor
+     *
+     * @param context the calling context
+     */
     public EmojiMultiAutoCompleteTextView(Context context) {
         super(context);
         mEmojiconSize = (int) getTextSize();
         mEmojiconTextSize = (int) getTextSize();
     }
 
+    /**
+     * Constructor
+     *
+     * @param context calling context
+     * @param attrs See @init
+     */
     public EmojiMultiAutoCompleteTextView(Context context, AttributeSet attrs) {
         super(context, attrs);
         init(attrs);
     }
 
+    /**
+     * Constructor
+     *
+     * @param context calling context
+     * @param attrs See @init
+     */
     public EmojiMultiAutoCompleteTextView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs, defStyle);
         init(attrs);
     }
 
+    /**
+     * Set attributes for the emoji representation
+     *
+     * @param attrs AttributeSet containing:
+     *              emojiconSize = Display size of the emojis in pixel
+     *              emojiconAlignment = Line alignment of the emojis (bottom or baseline)
+     *              emojiconUseSystemDefault = Boolean indicating if system default emojis should be used
+     */
     private void init(AttributeSet attrs) {
         TypedArray a = getContext().obtainStyledAttributes(attrs, R.styleable.Emojicon);
         mEmojiconSize = (int) a.getDimension(R.styleable.Emojicon_emojiconSize, getTextSize());
@@ -60,7 +75,9 @@ public class EmojiMultiAutoCompleteTextView extends MultiAutoCompleteTextView {
     }
 
     /**
-     * Set the size of emojicon in pixels.
+     * Set the emoji size in pixels
+     *
+     * @param pixels size of the emojis in px
      */
     public void setEmojiconSize(int pixels) {
         mEmojiconSize = pixels;
@@ -68,12 +85,17 @@ public class EmojiMultiAutoCompleteTextView extends MultiAutoCompleteTextView {
         updateText();
     }
 
+    /**
+     * Update text to show new emojis
+     */
     private void updateText() {
         EmojiHandler.addEmojis(getContext(), getText(), mEmojiconSize, mEmojiconAlignment, mEmojiconTextSize, mUseSystemDefault);
     }
 
     /**
-     * Set whether to use system default emojicon
+     * Set if system default emojis should be used
+     *
+     * @param useSystemDefault if true system emojis are used (default false)
      */
     public void setUseSystemDefault(boolean useSystemDefault) {
         mUseSystemDefault = useSystemDefault;

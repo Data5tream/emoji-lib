@@ -11,10 +11,12 @@ import android.widget.GridView;
 import com.github.data5tream.emojilib.emoji.Emojicon;
 import com.github.data5tream.emojilib.emoji.People;
 
-
 /**
- * @author Hieu Rocker (github@gmail.com)
- * @author 	Ankush Sachdeva (sankush@yahoo.co.in)
+ * @author Hieu Rocker
+ * @author 	Ankush Sachdeva
+ * @author data5tream
+ *
+ * @since 0.0.1
  */
 public class EmojiGridView {
     public View rootView;

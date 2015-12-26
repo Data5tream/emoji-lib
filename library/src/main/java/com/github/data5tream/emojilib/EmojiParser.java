@@ -6,6 +6,11 @@ import java.util.Arrays;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+/**
+ * @author data5tream
+ *
+ * @since 0.0.1
+ */
 public class EmojiParser {
 
     /**

@@ -1,18 +1,3 @@
-/*
- * Copyright 2014 Hieu Rocker
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *    http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
 package com.github.data5tream.emojilib;
 
 import android.content.Context;
@@ -23,7 +8,10 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author Hieu Rocker (github@gmail.com)
+ * @author Hieu Rocker
+ * @author data5tream
+ * 
+ * @since 0.0.1
  */
 public final class EmojiHandler {
     private EmojiHandler() {
@@ -1561,11 +1549,11 @@ public final class EmojiHandler {
     /**
      * Convert emoji characters of the given Spannable to the according emojicon.
      *
-     * @param context
-     * @param text
-     * @param emojiSize
-     * @param emojiAlignment
-     * @param textSize
+     * @param context the calling context
+     * @param text input text
+     * @param emojiSize size of the emoji in pixels
+     * @param emojiAlignment alignment of the emoji (bottom or baseline)
+     * @param textSize size of the text in pixels
      */
     public static void addEmojis(Context context, Spannable text, int emojiSize, int emojiAlignment, int textSize) {
         addEmojis(context, text, emojiSize, emojiAlignment, textSize, 0, -1, false);
@@ -1574,13 +1562,13 @@ public final class EmojiHandler {
     /**
      * Convert emoji characters of the given Spannable to the according emojicon.
      *
-     * @param context
-     * @param text
-     * @param emojiSize
-     * @param emojiAlignment
-     * @param textSize
-     * @param index
-     * @param length
+     * @param context the calling context
+     * @param text input text
+     * @param emojiSize size of the emoji in pixels
+     * @param emojiAlignment alignment of the emoji (bottom or baseline)
+     * @param textSize size of the text in pixels
+     * @param index the index of the cursor
+     * @param length the length of the text
      */
     public static void addEmojis(Context context, Spannable text, int emojiSize, int emojiAlignment, int textSize, int index, int length) {
         addEmojis(context, text, emojiSize, emojiAlignment, textSize, index, length, false);
@@ -1589,12 +1577,12 @@ public final class EmojiHandler {
     /**
      * Convert emoji characters of the given Spannable to the according emojicon.
      *
-     * @param context
-     * @param text
-     * @param emojiSize
-     * @param emojiAlignment
-     * @param textSize
-     * @param useSystemDefault
+     * @param context the calling context
+     * @param text input text
+     * @param emojiSize size of the emoji in pixels
+     * @param emojiAlignment alignment of the emoji (bottom or baseline)
+     * @param textSize size of the text in pixels
+     * @param useSystemDefault boolean that indicates if stock emojis should be used
      */
     public static void addEmojis(Context context, Spannable text, int emojiSize, int emojiAlignment, int textSize, boolean useSystemDefault) {
         addEmojis(context, text, emojiSize, emojiAlignment, textSize, 0, -1, useSystemDefault);
@@ -1603,14 +1591,14 @@ public final class EmojiHandler {
     /**
      * Convert emoji characters of the given Spannable to the according emojicon.
      *
-     * @param context
-     * @param text
-     * @param emojiSize
-     * @param emojiAlignment
-     * @param textSize
-     * @param index
-     * @param length
-     * @param useSystemDefault
+     * @param context the calling context
+     * @param text input text
+     * @param emojiSize size of the emoji in pixels
+     * @param emojiAlignment alignment of the emoji (bottom or baseline)
+     * @param textSize size of the text in pixels
+     * @param index the index of the cursor
+     * @param length the length of the text
+     * @param useSystemDefault boolean that indicates if stock emojis should be used
      */
     public static void addEmojis(Context context, Spannable text, int emojiSize, int emojiAlignment, int textSize, int index, int length, boolean useSystemDefault) {
         if (useSystemDefault) {

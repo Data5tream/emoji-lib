@@ -5,6 +5,11 @@ import android.widget.GridView;
 
 import com.github.data5tream.emojilib.emoji.Emojicon;
 
+/**
+ * @author Hieu Rocker
+ *
+ * @since 0.0.1
+ */
 public class EmojiRecentsGridView extends EmojiGridView implements EmojiRecents {
     EmojiAdapter mAdapter;
 

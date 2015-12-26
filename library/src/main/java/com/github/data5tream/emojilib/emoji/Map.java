@@ -4,7 +4,9 @@ import com.google.common.collect.BiMap;
 import com.google.common.collect.HashBiMap;
 
 /**
- * Created by void on 12/23/15.
+ * @author data5tream
+ *
+ * @since 0.0.1
  */
 public class Map {
     public static final BiMap<Integer, String> emojiMap = HashBiMap.create();
