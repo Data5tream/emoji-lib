@@ -31,7 +31,7 @@ script:
 addons:
   coverity_scan:
     project:
-      name: data5tream/emoji-lib
+      name: Data5tream/emoji-lib
       version: 1.0
       description: Emoji Support Library for Android
 
