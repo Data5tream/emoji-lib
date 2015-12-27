@@ -1,36 +1,50 @@
 language: android
+
+env:
+  global:
+    secure: N5zxhhaBa0W940cxO1GQBnh99Sxsl2w/AiCucP+xGZ7FqtGjrqD3ua3UI2F8vgxseXJ8/N/hXJSvxHbtDYlr+K2h7Khh8yQagwkgZwUFeiHvLjQZwnEhEQWraoWMW76rgN0dUr3Vtx+wv4zU4CbDRXt9QuIkVY409B3QUkk23uBwOPK8a+XTTfojoswpXIw0Po92ql8fU8ttc9lMX9mgHu5Sak8pzXimvxQ1K2RYCVEVngwexEm03MrRKExXjaxmfsslHdb0gdf6ro3rn+wiFsMrd67CfZ342MQUHLiQjH1Bh/Vi4FygNIbb/pwRcrnYaGFanfG5S/bAgQgmtR3WL6C9WQcnNK1LZafLXBJ8SXMGhTFUNViC3frYLKC82t8E5hFXj1G8WJLTRKOZX6IEX5Lx/h3cNl9HhZagSojrqaY7iNnq+9VZBSawx9rMgVmDksUWJ9sKCEjKoO9TqqIjVAN/ivNpkBs3UMRxz1++TsDL2QCreOi/JjD8szFDwOZqtLCB2pBIoMqY43vsz5ElYKTlJPj759D8Rj0BxhYEpKhmP9qGWUMQQJz0rG1cCQ5vP0XdfyfKCWEd7is5G94ezahaejcNS9GfUsZv2cAEPk0ry+LYwfK4GjdFxmT+yGizoY+X4Mrg9Xp45vAwNdz5PZDR6F/n2IPnfGn9AnoklSM=
+
 android:
   components:
-    # Uncomment the lines below if you want to
-    # use the latest revision of Android SDK Tools
-    - platform-tools
-    # - tools
-
-    # The BuildTools version used by your project
-    - build-tools-23.0.1
-
-    # The SDK version used to compile your project
-    - android-23
-
-    # Additional components
-    - extra-google-google_play_services
-    - extra-google-m2repository
-    - extra-android-m2repository
+  - platform-tools
+  - build-tools-23.0.1
+  - android-23
+  - extra-google-google_play_services
+  - extra-google-m2repository
+  - extra-android-m2repository
 
   licenses:
-    - android-sdk-license-.+
+  - android-sdk-license-.+
 
-script:
-  ./gradlew build connectedCheck #--stacktrace
+script: if [ ${COVERITY_SCAN_BRANCH} != 1 ]; then ./gradlew build connectedCheck ;
+  fi
 
 addons:
-    code_climate:
-        repo_token: ddafe3189d642d843cfea385eeef3d5855d95892cd737065bc351c4957eabfec
+  coverity_scan:
+    project:
+      name: Data5tream/emoji-lib
+      version: 1.0
+      description: Emoji Support Library for Android
+
+    notification_email: admin@7base.net
+    build_command: "./gradlew build connectedCheck"
+    branch_pattern: coverity_scan
+
+deploy:
+  provider: bintray
+  file: descriptor.js
+  user: data5tream
+  dry-run: true
+  #on:
+    #branch: release-**
 
 notifications:
   webhooks:
     urls:
-      - https://webhooks.gitter.im/e/1952f97e9d115599a9b0
-    on_success: change  # options: [always|never|change] default: always
-    on_failure: always  # options: [always|never|change] default: always
-    on_start: never     # options: [always|never|change] default: always
+    - https://webhooks.gitter.im/e/1952f97e9d115599a9b0
+    on_success: change
+    on_failure: always
+    on_start: never
+
+dd:
+  secure: jPY95BVXwsIXrdG9RfD7X07S2dUntsuxfBrlbzw+pMv2+sMk+YS1prD/gsgNT0zgQAXvEo8ZpJ3u/MwJYH7OizxSc0kLYgDg1frSwdwpa0X3Lwq2edZ0sZoxAxw7BvRYild5uR2hGbOUClYwqbxHVXid1wmGKilTjtjxfhw18fM0tvIaaOPsPbPafF0aUBQ5d4lKhcjrJ11xhoOQ/glsVUs9+Uko6jWzHAXASm19qjmr6pJnw6r+B9f7wJhOQLSE+KkXimPJF++cC9gs6eFzAAlXHUpTsv5dvWIFhKxDEGlQb77RYCfnuWJ6rPj+PPCI6A+DvFY3oweqRbQQXv0pZWEBSSVQ85hZHOCR0CgkVHAfPlDofFT6Vxd2E4qqYbMd4H5a3/Qo3LEPKw3/BctwZQxIwTaO0O0y9HgZMCB8GhpdHe2L3cuqmzsuvvXNNBVB0zc6tPgZ1fQFbWuXoYiQlin3BsPAXNMPE1x6HiU3PCuruit1aPBOpFXxZ4ajceq1SneFiR7BJ2VjkPZ7b2AG3P4F1rUdkEoQD+fa5T3MpeY514yzTeTI28u6Kmm2lL4CZzXsg83W+/BWyRkbF3R0KapO0TsR3ec/rfNQIS+Kqwy7s2nl9vI3OVE7ENl96BuD+oRbFIqTzzXjUgW5K0bHBZsIGEPIOVX34Qz9IYkAo6k=

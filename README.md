@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/Data5tream/emoji-lib.svg?branch=master)](https://travis-ci.org/Data5tream/emoji-lib)
+[![Build Status](https://travis-ci.org/Data5tream/emoji-lib.svg?branch=master)](https://travis-ci.org/Data5tream/emoji-lib) [![Coverity Scan](https://scan.coverity.com/projects/7409/badge.svg)](https://scan.coverity.com/projects/data5tream-emoji-lib) [![Download](https://api.bintray.com/packages/data5tream/maven/emoji-lib/images/download.svg)](https://bintray.com/data5tream/maven/emoji-lib/_latestVersion)
 
 # Emoji Support Lib
 
