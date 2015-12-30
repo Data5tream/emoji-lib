@@ -13,7 +13,7 @@ import com.github.data5tream.emojilib.emoji.People;
 
 /**
  * @author Hieu Rocker
- * @author 	Ankush Sachdeva
+ * @author Ankush Sachdeva
  * @author data5tream
  *
  * @since 0.0.1
@@ -35,8 +35,7 @@ public class EmojiGridView {
         if (emojicons== null) {
             mData = People.DATA;
         } else {
-            Object[] o = (Object[]) emojicons;
-            mData = Arrays.asList(o).toArray(new Emojicon[o.length]);
+            mData = Arrays.asList(emojicons).toArray(new Emojicon[emojicons.length]);
         }
         EmojiAdapter mAdapter = new EmojiAdapter(rootView.getContext(), mData);
         mAdapter.setEmojiClickListener(new OnEmojiconClickedListener() {

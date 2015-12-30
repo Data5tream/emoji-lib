@@ -5,6 +5,7 @@ import android.os.Parcelable;
 
 /**
  * @author Hieu Rocker
+ * @author data5tream
  *
  * @since 0.0.1
  */
@@ -72,7 +73,7 @@ public class Emojicon implements Parcelable {
         return emoji;
     }
 
-    public static final String newString(int codePoint) {
+    public static String newString(int codePoint) {
         if (Character.charCount(codePoint) == 1) {
             return String.valueOf(codePoint);
         } else {

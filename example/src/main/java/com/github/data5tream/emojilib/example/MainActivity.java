@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         ListView listView = (ListView) findViewById(R.id.list_view);
-        final ArrayAdapter<String> mAdapter = new ArrayAdapter<String>(this, R.layout.listview_row_layout);
+        final ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, R.layout.listview_row_layout);
         listView.setAdapter(mAdapter);
 
         final EmojiEditText emojiEditText = (EmojiEditText) findViewById(R.id.emojicon_edit_text);

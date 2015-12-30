@@ -4,18 +4,20 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.drawable.Drawable;
+import android.support.v4.content.ContextCompat;
 import android.text.style.DynamicDrawableSpan;
 
 import java.lang.ref.WeakReference;
 
 /**
  * @author Hieu Rocker
+ * @author data5tream
  *
  * @since 0.0.1
  */
 class EmojiSpan extends DynamicDrawableSpan {
 
-    private final Context mContext;
+    private final Context context;
 
     private final int mResourceId;
 
@@ -35,7 +37,7 @@ class EmojiSpan extends DynamicDrawableSpan {
 
     public EmojiSpan(Context context, int resourceId, int size, int alignment, int textSize) {
         super(alignment);
-        mContext = context;
+        this.context = context;
         mResourceId = resourceId;
         mWidth = mHeight = mSize = size;
         mTextSize = textSize;
@@ -44,13 +46,13 @@ class EmojiSpan extends DynamicDrawableSpan {
     public Drawable getDrawable() {
         if (mDrawable == null) {
             try {
-                mDrawable = mContext.getResources().getDrawable(mResourceId);
+                mDrawable = ContextCompat.getDrawable(context, mResourceId);
                 mHeight = mSize;
                 mWidth = mHeight * mDrawable.getIntrinsicWidth() / mDrawable.getIntrinsicHeight();
                 mTop = (mTextSize - mHeight) / 2;
                 mDrawable.setBounds(0, mTop, mWidth, mTop + mHeight);
             } catch (Exception e) {
-                // swallow
+                return mDrawable;
             }
         }
         return mDrawable;
@@ -74,7 +76,7 @@ class EmojiSpan extends DynamicDrawableSpan {
 
     private Drawable getCachedDrawable() {
         if (mDrawableRef == null || mDrawableRef.get() == null) {
-            mDrawableRef = new WeakReference<Drawable>(getDrawable());
+            mDrawableRef = new WeakReference<>(getDrawable());
         }
         return mDrawableRef.get();
     }

@@ -10,6 +10,7 @@ import java.util.StringTokenizer;
 
 /**
  * @author Daniele Ricci
+ * @author data5tream
  *
  * @since 0.0.1
  */
@@ -107,6 +108,11 @@ public class EmojiRecentsManager extends ArrayList<Emojicon> {
         }
     }
 
+    @Override
+    public boolean equals(Object emojicon) {
+        return this == emojicon;
+    }
+
     void saveRecents() {
         StringBuilder str = new StringBuilder();
         int c = size();
@@ -118,7 +124,7 @@ public class EmojiRecentsManager extends ArrayList<Emojicon> {
             }
         }
         SharedPreferences prefs = getPreferences();
-        prefs.edit().putString(PREF_RECENTS, str.toString()).commit();
+        prefs.edit().putString(PREF_RECENTS, str.toString()).apply();
     }
 
     public static void setMaximumSize(int maximumSize) {
