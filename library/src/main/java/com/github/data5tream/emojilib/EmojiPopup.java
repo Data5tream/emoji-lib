@@ -99,6 +99,7 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
         setContentView(customView);
         setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
         setSize((int) context.getResources().getDimension(R.dimen.keyboard_height), LayoutParams.MATCH_PARENT);
+        setBackgroundDrawable(new ColorDrawable());
     }
 
     /**
