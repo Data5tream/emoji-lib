@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.os.Build;
 import android.os.Handler;
 import android.os.SystemClock;
+import android.support.v4.content.ContextCompat;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.util.DisplayMetrics;
@@ -21,6 +22,7 @@ import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.view.WindowManager;
 import android.view.WindowManager.LayoutParams;
+import android.widget.ImageButton;
 import android.widget.PopupWindow;
 
 import com.github.data5tream.emojilib.emoji.Emojicon;
@@ -39,10 +41,13 @@ import com.github.data5tream.emojilib.emoji.Symbols;
 public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeListener, EmojiRecents {
 
     private int mEmojiTabLastSelectedIndex = -1;
-    private View[] mEmojiTabs;
+    private ImageButton[] mEmojiTabs;
     private PagerAdapter mEmojisAdapter;
     private EmojiRecentsManager mRecentsManager;
     private int keyBoardHeight = 0;
+    private int iconColor;
+    private int highlightColor;
+
     private Boolean pendingOpen = false;
     private Boolean isOpened = false;
 
@@ -58,7 +63,7 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
     /**
      * Constructor
      *
-     * @param rootView	The top most layout in your view hierarchy. The difference of this view and the screen height will be used to calculate the keyboard height.
+     * @param rootView The top most layout in your view hierarchy. The difference of this view and the screen height will be used to calculate the keyboard height.
      * @param context The context of current activity.
      */
     public EmojiPopup(View rootView, Context context) {
@@ -67,6 +72,27 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
         this.context = context;
         this.rootView = rootView;
 
+        highlightColor = ContextCompat.getColor(context, R.color.emojicons_selected_tab);
+        View customView = createCustomView();
+        setContentView(customView);
+        setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+        setSize((int) context.getResources().getDimension(R.dimen.keyboard_height), LayoutParams.MATCH_PARENT);
+    }
+
+    /**
+     * Constructor
+     *
+     * @param rootView The top most layout in your view hierarchy. The difference of this view and the screen height will be used to calculate the keyboard height.
+     * @param context The context of current activity.
+     * @param color The accent color to be used
+     */
+    public EmojiPopup(View rootView, Context context, int color) {
+        super(context);
+
+        this.context = context;
+        this.rootView = rootView;
+
+        highlightColor = color;
         View customView = createCustomView();
         setContentView(customView);
         setSoftInputMode(LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
@@ -204,6 +230,9 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
     private View createCustomView() {
         LayoutInflater inflater = (LayoutInflater) context.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(R.layout.emojicons, null, false);
+
+        iconColor = ContextCompat.getColor(context, R.color.emojilib_emojikeyboard_icons);
+
         emojisPager = (ViewPager) view.findViewById(R.id.emojis_pager);
         emojisPager.addOnPageChangeListener(this);
         EmojiRecents recents = this;
@@ -217,13 +246,13 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
             ));
         emojisPager.setAdapter(mEmojisAdapter);
 
-        mEmojiTabs = new View[6];
-        mEmojiTabs[0] = view.findViewById(R.id.emojis_tab_0_recents);
-        mEmojiTabs[1] = view.findViewById(R.id.emojis_tab_1_people);
-        mEmojiTabs[2] = view.findViewById(R.id.emojis_tab_2_nature);
-        mEmojiTabs[3] = view.findViewById(R.id.emojis_tab_3_objects);
-        mEmojiTabs[4] = view.findViewById(R.id.emojis_tab_4_cars);
-        mEmojiTabs[5] = view.findViewById(R.id.emojis_tab_5_punctuation);
+        mEmojiTabs = new ImageButton[6];
+        mEmojiTabs[0] = (ImageButton) view.findViewById(R.id.emojis_tab_0_recents);
+        mEmojiTabs[1] = (ImageButton) view.findViewById(R.id.emojis_tab_1_people);
+        mEmojiTabs[2] = (ImageButton) view.findViewById(R.id.emojis_tab_2_nature);
+        mEmojiTabs[3] = (ImageButton) view.findViewById(R.id.emojis_tab_3_objects);
+        mEmojiTabs[4] = (ImageButton) view.findViewById(R.id.emojis_tab_4_cars);
+        mEmojiTabs[5] = (ImageButton) view.findViewById(R.id.emojis_tab_5_punctuation);
 
         for (int i = 0; i < mEmojiTabs.length; i++) {
             final int position = i;
@@ -233,9 +262,12 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
                     emojisPager.setCurrentItem(position);
                 }
             });
+            mEmojiTabs[i].setColorFilter(iconColor);
         }
 
-        view.findViewById(R.id.emojis_backspace).setOnTouchListener(new RepeatListener(1000, 50, new OnClickListener() {
+        ImageButton backspaceBtn = (ImageButton) view.findViewById(R.id.emojis_backspace);
+
+        backspaceBtn.setOnTouchListener(new RepeatListener(1000, 50, new OnClickListener() {
             @Override
             public void onClick(View v) {
                 if(onEmojiconBackspaceClickedListener != null) {
@@ -243,6 +275,7 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
                 }
             }
         }));
+        backspaceBtn.setColorFilter(iconColor);
 
         mRecentsManager = EmojiRecentsManager.getInstance(view.getContext());
         int page = mRecentsManager.getRecentPage();
@@ -278,8 +311,10 @@ public class EmojiPopup extends PopupWindow implements ViewPager.OnPageChangeLis
 
         if (mEmojiTabLastSelectedIndex >= 0 && mEmojiTabLastSelectedIndex < mEmojiTabs.length) {
             mEmojiTabs[mEmojiTabLastSelectedIndex].setSelected(false);
+            mEmojiTabs[mEmojiTabLastSelectedIndex].setColorFilter(iconColor);
         }
         mEmojiTabs[i].setSelected(true);
+        mEmojiTabs[i].setColorFilter(highlightColor);
         mEmojiTabLastSelectedIndex = i;
         mRecentsManager.setRecentPage(i);
     }

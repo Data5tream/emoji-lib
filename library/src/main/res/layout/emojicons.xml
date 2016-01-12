@@ -2,14 +2,15 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/emojicons_google_keyboard_background"
+    android:background="@color/emojilib_google_keyboard_background"
     android:orientation="vertical">
 
     <LinearLayout
         android:id="@+id/emojis_tab"
         android:layout_width="match_parent"
         android:layout_height="@dimen/tab_height"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:background="@color/emojilib_emojikeyboard_header">
 
         <ImageButton
             android:id="@+id/emojis_tab_0_recents"
@@ -79,7 +80,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="@color/emojicons_google_keyboard_item_tertiary" />
+        android:background="@color/emojilib_google_keyboard_item_tertiary" />
 
     <android.support.v4.view.ViewPager
         android:id="@+id/emojis_pager"
