@@ -6,8 +6,6 @@ Add emoji support to your Android app!
 
 This library combines the works of [@rocboronat](https://github.com/rocboronat/emojicon), [@ankushsachdeva](https://github.com/ankushsachdeva/emojicon) and [@peibumur](https://github.com/pepibumur/emojize).
 
-## Emoji Support Lib is currently being rewritten to increase performance and reduce size.
-
 ## Installation
 
 Gradle:
@@ -21,7 +19,7 @@ repositories {
 ...
 
 dependencies {
-    compile 'com.github.Data5tream:emoji-lib:0.0.1'
+    compile 'com.github.Data5tream:emoji-lib:0.0.2.1'
    }
 
 
@@ -40,7 +38,7 @@ Maven:
   <dependency>
     <groupId>com.github.data5tream</groupId>
     <artifactId>emoji-lib</artifactId>
-    <version>0.0.1</version>
+    <version>0.0.2.1</version>
   </dependency>
 ```
 
@@ -62,6 +60,8 @@ String formattedAsCheatCode = EmojiParser.convertToCheatCode(formattedAsUnicode)
 ```
 `formattedAsCheatCode` will be: `:smile:`
 
+To use the emoji-keyboard, take a look at the example code.
+
 ## Acknowledgements
 
 Emoji Support Lib uses emoji graphics from [emoji-cheat-sheet.com](https://github.com/arvida/emoji-cheat-sheet.com/tree/master/public/graphics/emojis).
@@ -71,7 +71,7 @@ This project uses code published by [Roc Boronat](https://github.com/rocboronat)
 ## License
 
 ```
-Copyright 2015 Simon Barth
+Copyright 2016 Simon Barth
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
