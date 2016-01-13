@@ -25,7 +25,7 @@ public class MainActivity extends Activity {
         final EmojiEditText emojiEditText = (EmojiEditText) findViewById(R.id.emojicon_edit_text);
         final View rootView = findViewById(R.id.root_view);
         final ImageButton emojiButton = (ImageButton) findViewById(R.id.emoji_btn);
-        final EmojiPopup popup = new EmojiPopup(rootView, this);
+        final EmojiPopup popup = new EmojiPopup(rootView, this, getResources().getColor(R.color.brand));
 
         emojiEditText.requestFocus();
 
