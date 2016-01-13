@@ -35,7 +35,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onDismiss() {
-                changeEmojiKeyboardIcon(emojiButton, R.drawable.emoji_2328);
+                changeEmojiKeyboardIcon(emojiButton, R.drawable.emoji_1f600);
             }
         });
 
@@ -57,7 +57,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onEmojiconClicked(Emojicon emojicon) {
-                if (emojiEditText == null || emojicon == null) {
+                if (emojicon == null) {
                     return;
                 }
 
@@ -92,7 +92,7 @@ public class MainActivity extends Activity {
 
                     if(popup.isKeyBoardOpen()){
                         popup.showAtBottom();
-                        changeEmojiKeyboardIcon(emojiButton, R.drawable.ic_emoji_symbols_light_activated);
+                        changeEmojiKeyboardIcon(emojiButton, R.drawable.emoji_2328);
                     }
 
                     else{
@@ -101,7 +101,7 @@ public class MainActivity extends Activity {
                         popup.showAtBottomPending();
                         final InputMethodManager inputMethodManager = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
                         inputMethodManager.showSoftInput(emojiEditText, InputMethodManager.SHOW_IMPLICIT);
-                        changeEmojiKeyboardIcon(emojiButton, R.drawable.ic_emoji_people_light_activated);
+                        changeEmojiKeyboardIcon(emojiButton, R.drawable.emoji_2328);
                     }
                 }
 
