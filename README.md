@@ -1,10 +1,10 @@
-[![Build Status](https://travis-ci.org/Data5tream/emoji-lib.svg?branch=master)](https://travis-ci.org/Data5tream/emoji-lib) [![Coverity Scan](https://scan.coverity.com/projects/7409/badge.svg)](https://scan.coverity.com/projects/data5tream-emoji-lib) [![Download](https://api.bintray.com/packages/data5tream/maven/emoji-lib/images/download.svg)](https://bintray.com/data5tream/maven/emoji-lib/_latestVersion)
+[![Build Status](https://travis-ci.org/Data5tream/emoji-lib.svg?branch=master)](https://travis-ci.org/Data5tream/emoji-lib) [![Coverity Scan](https://scan.coverity.com/projects/7409/badge.svg)](https://scan.coverity.com/projects/data5tream-emoji-lib)
 
 # Emoji Support Lib
 
-Add emoji support to your Android app!
+Add Emoji support to your Android app!
 
-This library combines the works of [@rocboronat](https://github.com/rocboronat/emojicon), [@ankushsachdeva](https://github.com/ankushsachdeva/emojicon) and [@peibumur](https://github.com/pepibumur/emojize).
+This library combines the works of [@rocboronat](https://github.com/rocboronat/emojicon), [@ankushsachdeva](https://github.com/ankushsachdeva/emojicon) and [@peibumur](https://github.com/pepibumur/emojize) and my one continuation of this project.
 
 ## Installation
 
@@ -66,7 +66,7 @@ To use the emoji-keyboard, take a look at the example code.
 
 Emoji Support Lib uses emoji graphics from [emoji-cheat-sheet.com](https://github.com/arvida/emoji-cheat-sheet.com/tree/master/public/graphics/emojis).
 
-This project uses code published by [Roc Boronat](https://github.com/rocboronat) and [Ankush Sachdeva](https://github.com/ankushsachdeva) and has a dependency on [Guava](https://github.com/google/guava).
+This project has a dependency on [Guava](https://github.com/google/guava).
 
 ## License
 
