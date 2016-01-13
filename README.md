@@ -6,6 +6,8 @@ Add Emoji support to your Android app!
 
 This library combines the works of [@rocboronat](https://github.com/rocboronat/emojicon), [@ankushsachdeva](https://github.com/ankushsachdeva/emojicon) and [@peibumur](https://github.com/pepibumur/emojize) and my one continuation of this project.
 
+![Screenshot](http://i.imgur.com/rI6hfXA.png)
+
 ## Installation
 
 Gradle:
