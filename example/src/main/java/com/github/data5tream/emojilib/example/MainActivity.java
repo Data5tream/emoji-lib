@@ -7,9 +7,7 @@ import android.view.KeyEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.inputmethod.InputMethodManager;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.ListView;
+import android.widget.ImageButton;
 import android.widget.PopupWindow.OnDismissListener;
 
 import com.github.data5tream.emojilib.EmojiEditText;
@@ -24,15 +22,12 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        ListView listView = (ListView) findViewById(R.id.list_view);
-        final ArrayAdapter<String> mAdapter = new ArrayAdapter<>(this, R.layout.listview_row_layout);
-        listView.setAdapter(mAdapter);
-
         final EmojiEditText emojiEditText = (EmojiEditText) findViewById(R.id.emojicon_edit_text);
         final View rootView = findViewById(R.id.root_view);
-        final ImageView emojiButton = (ImageView) findViewById(R.id.emoji_btn);
-        final ImageView submitButton = (ImageView) findViewById(R.id.submit_btn);
+        final ImageButton emojiButton = (ImageButton) findViewById(R.id.emoji_btn);
         final EmojiPopup popup = new EmojiPopup(rootView, this);
+
+        emojiEditText.requestFocus();
 
         popup.setSizeForSoftKeyboard();
 
@@ -40,7 +35,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onDismiss() {
-                changeEmojiKeyboardIcon(emojiButton, R.drawable.ic_emoji_symbols_light_activated);
+                changeEmojiKeyboardIcon(emojiButton, R.drawable.emoji_2328);
             }
         });
 
@@ -53,7 +48,7 @@ public class MainActivity extends Activity {
 
             @Override
             public void onKeyboardClose() {
-                if(popup.isShowing())
+                if (popup.isShowing())
                     popup.dismiss();
             }
         });
@@ -115,22 +110,9 @@ public class MainActivity extends Activity {
                 }
             }
         });
-
-        //This doesn't work
-        submitButton.setOnClickListener(new OnClickListener() {
-
-            @Override
-            public void onClick(View v) {
-                String newText = emojiEditText.getText().toString();
-                emojiEditText.getText().clear();
-                mAdapter.add(newText);
-                mAdapter.notifyDataSetChanged();
-
-            }
-        });
     }
 
-    private void changeEmojiKeyboardIcon(ImageView iconToBeChanged, int drawableResourceId){
+    private void changeEmojiKeyboardIcon(ImageButton iconToBeChanged, int drawableResourceId){
         iconToBeChanged.setImageResource(drawableResourceId);
     }
 

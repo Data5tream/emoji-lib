@@ -2,7 +2,8 @@
 
     <!-- Base application theme. -->
     <style name="AppTheme" parent="android:Theme.Light">
-        <!-- Customize your theme here. -->
+        <item name="android:background">@color/background</item>
+        <item name="android:textColor">@color/brand</item>
     </style>
 
 </resources>
