@@ -62,7 +62,7 @@ String formattedAsCheatCode = EmojiParser.convertToCheatCode(formattedAsUnicode)
 ```
 `formattedAsCheatCode` will be: `:smile:`
 
-To use the emoji-keyboard, take a look at the example code.
+To use the emoji-keyboard, take a look at the [example code](https://github.com/Data5tream/emoji-lib/blob/master/example/src/main/java/com/github/data5tream/emojilib/example/MainActivity.java).
 
 ## Acknowledgements
 
